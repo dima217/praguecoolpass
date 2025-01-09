@@ -17,12 +17,12 @@ const Header = () => {
                 </nav>
                 
                 <div className="flex items-center space-x-4 ml-20">
-                    <button className="bg-orange-600 px-4 py-2 rounded-md hover:bg-orange-500 text-white">
-                        Buy Online
+                    <button className="bg-orange-600 px-4 py-2 w-[130px] h-[35px] rounded-md hover:bg-orange-500 text-white flex items-center justify-center">
+                        BUY ONLINE
                     </button>
-                    <select className="bg-gray-800 px-2 py-1 text-sm rounded-md text-white">
-                        <option>English</option>
-                        <option>Čeština</option>
+                    <select className="bg-gray-800 w-[130px] h-[35px] px-2 py-1 text-sm rounded-md text-white text-center" style={{textAlignLast: 'center' }}>
+                         <option>ENGLISH</option>
+                         <option>Čeština</option>
                         <option>Deutsch</option>
                     </select>
                 </div>

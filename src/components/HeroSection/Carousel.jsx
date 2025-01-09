@@ -34,7 +34,7 @@ const Carousel = () => {
           justifyContent: 'center',
           padding: 0,
           margin: 0,
-          zIndex: 40
+          zIndex: 50
         }}
       >
         <ul style={{ margin: 0, padding: 0 }}>{dots}</ul>
