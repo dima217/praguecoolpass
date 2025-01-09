@@ -1,14 +1,13 @@
 import React from 'react';
-import Header from '../components/Header/Header';
-import HeroSection from '../components/HeroSection/HeroSection';
-import FooterBanner from '../components/FooterBanner/FooterBanner';
+import Header from '../../components/Header/header';
+import HeroSection from '../../components/HeroSection/HeroSection';
+import FooterBanner from '../../components/FooterBanner/FooterBanner'; 
 
 const HomePage = () => {
   return (
     <div>
       <Header />
       <HeroSection />
-      <FooterBanner />
     </div>
   );
 };
