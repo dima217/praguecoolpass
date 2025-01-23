@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setError } from "../HomePageMainContentSlice/HomePageSliceAssets";
 
 const AllTranslationContentSlice = createSlice({
     name: 'translationContent',
