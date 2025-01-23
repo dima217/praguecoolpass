@@ -14,7 +14,15 @@ import { TopAttractions } from "./sections/top";
 import { Experience } from "./sections/experience";
 import { AllInclusive } from "./sections/all-inclusive";
 
+import { useDispatch, useSelector } from "react-redux";
+import API_ENDPOINTS from "./api/apiconfig";
+
 function App() {
+  const dispatch = useDispatch();
+  const selectedLanguage = useSelector((state) => state.language);
+
+  
+
   return (
     <>
       <Header />
