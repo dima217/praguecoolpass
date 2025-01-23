@@ -1,22 +1,23 @@
+// @ts-nocheck
 import { setAssetsData, setError as setAssetsDataError } from "./Slices/HomePageMainContentSlice/HomePageSliceAssets";
 import { setMainData, setError as setMainDataError } from "./Slices/HomePageMainContentSlice/HomePageSliceData";
 import { setTranslationContent, setError as setTranslationContentError } from "./Slices/AllTranslationContent/AllTranslationContentSlice";
 import axios from "axios";
 
-export const fetchHomePageMainContent = (selectedLanguage, mainDataUrl, transitionDataUrl) => async (dispatch) => {
+export const fetchHomePageMainContent = (selectedLanguage, mainDataUrl, translationDataUrl) => async (dispatch) => {
     try {
-        const [mainContentResponse, transitionContentResponse] = await Promise.all([
+        const [mainContentResponse, translationContentResponse] = await Promise.all([
             axios.get(mainDataUrl).catch((error) => {
                 throw { type: 'mainData', error };
             }),
-            axios.get(transitionDataUrl[selectedLanguage]).catch((error) => {
+            axios.get(translationDataUrl).catch((error) => {
                 throw { type: 'translation', error }; 
             }),
         ]);
 
         dispatch(setMainData(mainContentResponse.data.content));
 
-        dispatch(setTranslationContent(transitionContentResponse.data));
+        dispatch(setTranslationContent(translationContentResponse.data));
 
         const { mainImage, benefits, offers, howToUse } = mainContentResponse.data;
         dispatch(
