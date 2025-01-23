@@ -1,9 +1,10 @@
+// @ts-nocheck
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Menu } from "./ui/menu";
 import { Select } from "./ui/select";
 
-export const Header = () => {
+export const Header = ({ buyNow }) => {
   const [isOpen, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);

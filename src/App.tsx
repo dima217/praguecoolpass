@@ -25,14 +25,14 @@ function App() {
   const selectedLanguage = useSelector((state) => state.language);
 
   const {
-    data: contentDataAll,
+    mainData: contentDataAll,
     error: contentError
    } = useSelector(
     (state) => state.mainData
   );
 
   const {
-    data: translationDataAll,
+    translationContent: translationDataAll,
     error: translationError
   } = useSelector(
     (state) => state.translationContent
@@ -48,7 +48,7 @@ function App() {
           fetchHomePageMainContent(
             selectedLanguage, 
             API_ENDPOINTS.GET_MainPageCohtent,
-            API_ENDPOINTS.GET_Translatoin
+            API_ENDPOINTS.GET_Translation
           )
         )
       }
@@ -56,11 +56,14 @@ function App() {
 
   const contentData = contentDataAll ? contentDataAll[selectedLanguage] || contentDataAll.en : null;
   
-  const translationData = translationDataAll ? translationDataAll[selectedLanguage] || translationDataAll.en : null;
+  const translationData = translationDataAll ? translationDataAll[selectedLanguage] || translationDataAll.en : null; 
+  
+  console.log(translationDataAll)
+  console.log(contentData)
 
   return (
     <>
-      <Header />
+      <Header/>
       <Hero />
       <TopAttractions />
       <Experience />
