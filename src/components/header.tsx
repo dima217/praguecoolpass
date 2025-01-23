@@ -29,7 +29,7 @@ export const Header = () => {
 
   return (
     <header
-      className={`flex items-center z-50 h-[56px] w-full text-white fixed transition-transform duration-300
+      className={`flex items-center z-50 h-[43px] w-full text-white fixed transition-transform duration-300
        ${isOpen ? "bg-[#444959]" : "bg-bg/60"}
        ${isVisible ? "translate-y-0" : "-translate-y-full"}
      `}
