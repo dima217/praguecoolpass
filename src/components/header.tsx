@@ -2,12 +2,17 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Menu } from "./ui/menu";
-import { Select } from "./ui/select";
+import LanguageSelector, { Select } from "./ui/language-selector";
+import { useSelector } from "react-redux";
+import API_ENDPOINTS from "../api/apiconfig";
+import axios from "axios";
 
 export const Header = ({ buyNow }) => {
   const [isOpen, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [data, setData] = useState(null);
+  const selectedLanguage = useSelector((state) => state.language);
 
   const toggleMenu = () => setOpen((prev) => !prev);
 
@@ -27,6 +32,65 @@ export const Header = ({ buyNow }) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, isOpen]);
+
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try {
+        const response = await axios.get(API_ENDPOINTS.GET_MenuItems);
+        const menuContent = response.data;
+        if (menuContent) {
+            setData(menuContent);
+        }
+    } catch (err) {
+        console.error('Ошибка загрузки данных:', err);
+    }
+   };
+
+   fetchData();
+  }, [selectedLanguage])
+
+  if (!data) {
+    return <div>Loading...</div>
+  }
+
+  const filteredMenuItems = data.filter((item) => item.order < 10);
+
+  const linksDesctop = filteredMenuItems
+  .filter((item) => item.order < 10)
+  .map((item) => {
+      const title = item.content[selectedLanguage] ? item.content[selectedLanguage].title
+          : item.content.en.title;
+      const link = item.link || '/';
+
+      return (
+          <a
+              key={item._id}
+              className="hover:text-primary transition-colors"
+              href={link}
+          >
+              {title}
+          </a>
+      );
+  });
+
+  const linksMobile = filteredMenuItems
+  .filter((item) => item.order < 10)
+  .map((item) => {
+      const title = item.content[selectedLanguage] ? item.content[selectedLanguage].title
+          : item.content.en.title;
+      const link = item.link || '/';
+
+      return (
+          <a
+              key={item._id}
+              className="text-white text-base mb-[14px] font-bold hover:text-primary transition-colors"
+              href={link}
+          >
+              {title}
+          </a>
+      );
+  });
 
   return (
     <header
@@ -63,24 +127,7 @@ export const Header = ({ buyNow }) => {
         </div>
         {/* Desktop navigation */}
         <nav className="hidden space-x-6 xl:flex ml-[50px] mr-[40px] basis-auto grow text-sm">
-          <a href="#" className="hover:text-primary transition-colors">
-            COOLPASS/CARD
-          </a>
-          <a href="#" className="hover:text-primary transition-colors">
-            ATTRACTIONS
-          </a>
-          <a href="#" className="hover:text-primary transition-colors">
-            GET YOUR PASS
-          </a>
-          <a href="#" className="hover:text-primary transition-colors">
-            PLAN YOUR TRIP
-          </a>
-          <a href="#" className="hover:text-primary transition-colors">
-            CURRENT NEWS
-          </a>
-          <a href="#" className="hover:text-primary transition-colors">
-            FAQ
-          </a>
+         {linksDesctop}
         </nav>
         <div className="grow shrink basis-auto flex justify-end space-x-4">
           <Button
@@ -88,63 +135,16 @@ export const Header = ({ buyNow }) => {
               isOpen ? "hidden" : "block"
             } bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors`}
           >
-            BUY ONLINE
+            {buyNow}
           </Button>
-          <Select
-            className={`md:block max-w-[110px] ${isOpen ? "block" : "hidden"}`}
-            options={[
-              { label: "English", value: "1" },
-              { label: "Čeština", value: "2" },
-              { label: "Deutsch", value: "3" },
-              { label: "Español", value: "4" },
-              { label: "Italiano", value: "5" },
-              { label: "Français", value: "6" },
-              { label: "Русский", value: "7" },
-              { label: "Polski", value: "8" },
-            ]}
-          />
+          <LanguageSelector/>
         </div>
       </div>
       
       <Menu open={isOpen}>
-        <a
-          className="text-white text-base mb-[14px] font-bold hover:text-primary transition-colors"
-          href="#"
-        >
-          COOLPASS/CARD
-        </a>
-        <a
-          className="text-white text-base mb-[14px] font-bold hover:text-primary transition-colors"
-          href="#"
-        >
-          ATTRACTIONS
-        </a>
-        <a
-          className="text-white text-base mb-[14px] font-bold hover:text-primary transition-colors"
-          href="#"
-        >
-          GET YOUR PASS
-        </a>
-        <a
-          className="text-white text-base mb-[14px] font-bold hover:text-primary transition-colors"
-          href="#"
-        >
-          PLAN YOUR TRIP
-        </a>
-        <a
-          className="text-white text-base mb-[14px] font-bold hover:text-primary transition-colors"
-          href="#"
-        >
-          CURRENT NEWS
-        </a>
-        <a
-          className="text-white text-base font-bold mb-[14px] hover:text-primary transition-colors"
-          href="#"
-        >
-          FAQ
-        </a>
+      {linksMobile}
         <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors">
-          BUY ONLINE
+          {buyNow}
         </Button>
       </Menu>
     </header>

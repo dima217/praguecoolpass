@@ -1,10 +1,15 @@
 // @ts-nocheck
-import { setAssetsData, setError as setAssetsDataError } from "./Slices/HomePageMainContentSlice/HomePageSliceAssets";
-import { setMainData, setError as setMainDataError } from "./Slices/HomePageMainContentSlice/HomePageSliceData";
-import { setTranslationContent, setError as setTranslationContentError } from "./Slices/AllTranslationContent/AllTranslationContentSlice";
+import { setAssetsData, setError as setAssetsDataError, setLoading as setAssetsLoading } from "./Slices/HomePageMainContentSlice/HomePageSliceAssets";
+import { setMainData, setError as setMainDataError, setLoading as setContentLoading } from "./Slices/HomePageMainContentSlice/HomePageSliceData";
+import { setTranslationContent, setError as setTranslationContentError, setLoading as setTranslationLoading } from "./Slices/AllTranslationContent/AllTranslationContentSlice";
 import axios from "axios";
 
-export const fetchHomePageMainContent = (selectedLanguage, mainDataUrl, translationDataUrl) => async (dispatch) => {
+export const fetchHomePageMainContent = (
+    selectedLanguage, mainDataUrl, translationDataUrl
+) => async (dispatch) => {
+    dispatch(setContentLoading());
+    dispatch(setTranslationLoading());
+    dispatch(setAssetsLoading()); 
     try {
         const [mainContentResponse, translationContentResponse] = await Promise.all([
             axios.get(mainDataUrl).catch((error) => {
