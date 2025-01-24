@@ -88,7 +88,10 @@ function App() {
         letsGo={translationData.HOME_lets_go_button}
         mainImage={mainImage}
       />
-      <TopAttractions />
+      <TopAttractions 
+       title={translationData.HOME_top_attractions_title}
+       includedWithCoolpass={`${translationData.ATTRACTIONS_label_included} ${translationData.ATTRACTIONS_label_with_pass}`} 
+      />
       <Experience />
       <AllInclusive />
       <HowToUse />
