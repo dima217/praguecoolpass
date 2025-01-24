@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { Button } from "./ui/button";
 
-export const Search = () => {
+export const Search = ({search, searchNotFound, searchEmpty, letsGo}) => {
   return (
     <div className="flex flex-col md:flex-row items-center mt-[20px] container relative">
       <div className="flex items-center justify-start relative w-full md:w-[270px]">
@@ -9,7 +10,7 @@ export const Search = () => {
             <div className="rounded-[5px]">
               <div className="max-md:w-full">
                 <input
-                  placeholder="Search Attractions"
+                  placeholder={search}
                   type="text"
                   autoComplete="off"
                   className="border w-full rounded-[5px] text-sm color-bg h-[37px] indent-[12px]"
@@ -49,7 +50,7 @@ export const Search = () => {
         </div>
       </div>
       <Button className="max-md:mt-[12px] md:ml-[21px] md:px-[20px] h-[37px] bg-primary text-white max-md:w-full">
-        Let’s go
+        {letsGo}
       </Button>
     </div>
   );

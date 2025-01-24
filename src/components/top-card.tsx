@@ -1,10 +1,12 @@
 import { FC, useState } from "react";
+import { API_PICTURES_URL } from "../api/apiconfig";
 
 interface TopCardProps {
   link: string;
   title: string;
   image: string;
   description: string;
+  includedWithCoolpass: string
 }
 
 export const TopCard: FC<TopCardProps> = ({
@@ -12,6 +14,7 @@ export const TopCard: FC<TopCardProps> = ({
   title,
   image,
   description,
+  includedWithCoolpass
 }) => {
   const [like, setLike] = useState(false);
   const [isHoverActive, setIsHoverActive] = useState(false);
@@ -25,13 +28,13 @@ export const TopCard: FC<TopCardProps> = ({
     <div
       className="h-[204px] w-full rounded-[10px] bg-cover bg-no-repeat bg-center relative overflow-hidden cursor-pointer"
       style={{
-        backgroundImage: `url("/assets/images/${image}")`,
+        backgroundImage: `url('${API_PICTURES_URL}/${image}')`,
       }}
     >
       <a href={link} className="h-full w-full">
         <div className="absolute top-0 right-0 mt-[10px] px-[15px] h-[23px] bg-[#fdca2e] rounded-tl-[5px] rounded-bl-[5px]">
           <p className="text-sm flex justify-center items-center">
-            INCLUDED with CoolPass
+            {includedWithCoolpass}
           </p>
         </div>
         <div

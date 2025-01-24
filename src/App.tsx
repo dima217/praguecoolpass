@@ -75,10 +75,23 @@ function App() {
   return (
     <>
       <Header
-      buyNow={translationData.BUY_NOW}
+        buyNow={translationData.BUY_NOW}
       />
-      <Hero />
-      <TopAttractions />
+      <Hero 
+        title={contentData.title}
+        subtitle={contentData.subtitle}
+        headerBanner={contentData.header_banner}
+        search={translationData.SEARCH}
+        searchNotFound={translationData.SEARCH_not_found}
+        searchEmpty={translationData.SEARCH_empty}
+        headerPhotoByLeabel={translationData.HEADER_photo_by_label}
+        letsGo={translationData.HOME_lets_go_button}
+        mainImage={mainImage}
+      />
+      <TopAttractions 
+       title={translationData.HOME_top_attractions_title}
+       includedWithCoolpass={`${translationData.ATTRACTIONS_label_included} ${translationData.ATTRACTIONS_label_with_pass}`} 
+      />
       <Experience />
       <AllInclusive />
       <HowToUse />
