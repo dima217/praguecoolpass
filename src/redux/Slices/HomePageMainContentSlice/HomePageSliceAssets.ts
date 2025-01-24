@@ -8,6 +8,7 @@ const HomePageSliceAssers = createSlice({
     offers: null,
     howToUse: null,
     error: null,
+    loading: false
   },
   reducers: {
     setAssetsData: (state, action) => {
@@ -15,12 +16,18 @@ const HomePageSliceAssers = createSlice({
       state.benefits = action.payload;
       state.offers = action.payload;
       state.howToUse = action.payload;
+      state.error = null;
+      state.loading = false
     },
     setError: (state, action) => {
       state.error = action.payload;
+      state.loading = false;
     },
+    setLoading: (state) => {
+      state.loading = true;
+  }
   },
 });
 
-export const { setAssetsData, setError } = HomePageSliceAssers.actions;
+export const { setAssetsData, setError, setLoading } = HomePageSliceAssers.actions;
 export default HomePageSliceAssers.reducer;

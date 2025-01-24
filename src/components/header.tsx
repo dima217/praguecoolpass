@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Menu } from "./ui/menu";
-import { Select } from "./ui/select";
+import LanguageSelector, { Select } from "./ui/language-selector";
 
 export const Header = ({ buyNow }) => {
   const [isOpen, setOpen] = useState(false);
@@ -88,21 +88,9 @@ export const Header = ({ buyNow }) => {
               isOpen ? "hidden" : "block"
             } bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors`}
           >
-            BUY ONLINE
+            {buyNow}
           </Button>
-          <Select
-            className={`md:block max-w-[110px] ${isOpen ? "block" : "hidden"}`}
-            options={[
-              { label: "English", value: "1" },
-              { label: "Čeština", value: "2" },
-              { label: "Deutsch", value: "3" },
-              { label: "Español", value: "4" },
-              { label: "Italiano", value: "5" },
-              { label: "Français", value: "6" },
-              { label: "Русский", value: "7" },
-              { label: "Polski", value: "8" },
-            ]}
-          />
+          <LanguageSelector/>
         </div>
       </div>
       

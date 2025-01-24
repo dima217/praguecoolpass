@@ -26,14 +26,16 @@ function App() {
 
   const {
     mainData: contentDataAll,
-    error: contentError
+    error: contentError,
+    loading: mainDataLoading
    } = useSelector(
     (state) => state.mainData
   );
 
   const {
     translationContent: translationDataAll,
-    error: translationError
+    error: translationError,
+    loading: translationContentLoading
   } = useSelector(
     (state) => state.translationContent
   );
@@ -54,16 +56,27 @@ function App() {
       }
   }, [dispatch, selectedLanguage])
 
+  if (mainDataLoading || translationContentLoading) {
+    return <div className="loader">Loading...</div>
+  }
+
   const contentData = contentDataAll ? contentDataAll[selectedLanguage] || contentDataAll.en : null;
   
   const translationData = translationDataAll ? translationDataAll[selectedLanguage] || translationDataAll.en : null; 
   
+  console.log(selectedLanguage)
   console.log(translationDataAll)
   console.log(contentData)
 
+  if (!contentData || !translationData) {
+    return <p>Контент не найден</p>;
+}
+
   return (
     <>
-      <Header/>
+      <Header
+      buyNow={translationData.BUY_NOW}
+      />
       <Hero />
       <TopAttractions />
       <Experience />
