@@ -89,10 +89,13 @@ function App() {
         mainImage={mainImage}
       />
       <TopAttractions 
-       title={translationData.HOME_top_attractions_title}
-       includedWithCoolpass={`${translationData.ATTRACTIONS_label_included} ${translationData.ATTRACTIONS_label_with_pass}`} 
+        title={translationData.HOME_top_attractions_title}
+        includedWithCoolpass={`${translationData.ATTRACTIONS_label_included} ${translationData.ATTRACTIONS_label_with_pass}`} 
       />
-      <Experience />
+      <Experience 
+        title={translationData.HOME_benefits_title}
+        benefitsData={contentData.benefits}
+      />
       <AllInclusive />
       <HowToUse />
       <LatestNews />
