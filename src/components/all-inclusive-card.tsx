@@ -1,18 +1,18 @@
 import { FC, useState } from "react";
+import { API_PICTURES_URL } from "../api/apiconfig";
 
 interface AllInclusiveCardProps {
-  id: number;
   title: string;
   image: string;
-  description: string;
-  btn: string;
+  button_text: string;
+  features_list: string
 }
 
 export const AllInclusiveCard: FC<AllInclusiveCardProps> = ({
   title,
   image,
-  description,
-  btn,
+  button_text,
+  features_list
 }) => {
   const [isHoverActive, setIsHoverActive] = useState(false);
 
@@ -20,7 +20,7 @@ export const AllInclusiveCard: FC<AllInclusiveCardProps> = ({
     <div
       className="bg-cover bg-no-repeat bg-center w-full h-[300px] lg:rounded-[10px] relative cursor-pointer overflow-hidden"
       style={{
-        backgroundImage: `url("/assets/images/${image}")`,
+        backgroundImage: `url('${API_PICTURES_URL}/${image}')`,
       }}
       onMouseEnter={() => setIsHoverActive(true)}
       onMouseLeave={() => setIsHoverActive(false)}
@@ -45,8 +45,7 @@ export const AllInclusiveCard: FC<AllInclusiveCardProps> = ({
       >
         <div className="px-[22px] lg:px-[47px] text-white">
           <div className="mt-[30px] text-lg">{title}</div>
-          <div className="text-sm mt-[15px]">
-            <p>{description}</p>
+          <div className="text-sm mt-[15px]" dangerouslySetInnerHTML={{ __html: features_list }}>
           </div>
         </div>
         <div className="flex justify-center items-center w-full mt-auto mb-[40px]">
@@ -55,7 +54,7 @@ export const AllInclusiveCard: FC<AllInclusiveCardProps> = ({
             className="min-w-[80px] h-[40px] w-auto"
           >
             <button className="min-w-[126px] h-[40px] mt-[14px] w-auto bg-primary border-primary text-white px-[20px] rounded-[5px]">
-              {btn}
+              {button_text}
             </button>
           </a>
         </div>

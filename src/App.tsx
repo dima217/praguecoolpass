@@ -96,7 +96,11 @@ function App() {
         title={translationData.HOME_benefits_title}
         benefitsData={contentData.benefits}
       />
-      <AllInclusive />
+      <AllInclusive 
+        title={translationData.HOME_offers_title}
+        offersContent={offers}
+        offersText={contentData.offers}
+      />
       <HowToUse />
       <LatestNews />
       <Buy />
