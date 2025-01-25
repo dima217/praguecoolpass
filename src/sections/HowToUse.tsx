@@ -1,7 +1,10 @@
+// @ts-nocheck
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { StepCard } from "../components/step-card";
 import { Typography } from "../components/ui/typography";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const steps = [
   {
@@ -61,11 +64,29 @@ const steps = [
     ),
   },
 ];
-export const HowToUse = () => {
+export const HowToUse = ({title, HowToUseContent, HowToUseText}) => {
+
+  const [howToUseText, setHowToUseText] = useState([]);
+  const [howToUseContent, sethowToUseContent] = useState([]);
+  const selectedLanguage = useSelector((state) => state.language);
+
+  useEffect(() => {
+
+    const formatedText = HowToUseText.descriptions;
+    const formatedContent = HowToUseContent.how_to_use.app_images;
+    
+    setHowToUseText(formatedText);
+    sethowToUseContent(formatedContent);
+
+  }, [selectedLanguage])
+
+  console.log(howToUseText);
+  console.log(howToUseContent);
+  
   return (
     <div className="container flex flex-col">
       <Typography variant="title">
-        HOW TO USE PRAGUE CoOLPASS — FEW EASY STEPS
+        {title}
       </Typography>
       <div className="w-full">
         <Swiper
@@ -94,9 +115,13 @@ export const HowToUse = () => {
             },
           }}
         >
-          {steps.map((step, index) => (
+          {howToUseText.map((step, index) => (
             <SwiperSlide className="!h-auto">
-              <StepCard key={index} {...step} />
+              <StepCard 
+               descriptions={step}
+               index={index}
+               image={howToUseContent[index]}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

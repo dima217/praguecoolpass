@@ -24,13 +24,13 @@ export const fetchHomePageMainContent = (
 
         dispatch(setTranslationContent(translationContentResponse.data));
 
-        const { mainImage, benefits, offers, howToUse } = mainContentResponse.data;
+        const { mainImage, benefits, offers, how_to_use } = mainContentResponse.data;
         dispatch(
             setAssetsData({
                 mainImage,
                 benefits,
                 offers,
-                howToUse,
+                HowToUse: how_to_use,
             })
         );
     } catch (error) {

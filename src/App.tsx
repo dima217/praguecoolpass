@@ -101,7 +101,11 @@ function App() {
         offersContent={offers}
         offersText={contentData.offers}
       />
-      <HowToUse />
+      <HowToUse 
+        title={translationData.HOME_how_to_use_title}
+        HowToUseContent={howToUse}
+        HowToUseText={contentData.how_to_use} 
+      />
       <LatestNews />
       <Buy />
       <Review />
