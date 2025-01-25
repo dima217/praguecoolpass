@@ -1,12 +1,13 @@
+// @ts-nocheck
 import { configureStore } from '@reduxjs/toolkit';
 import languageReducer from './Slices/LanguageSlice';
 import favoritesSlice from './Slices/LikedAttractionsSlice';
 import HomePageContentSlice from './Slices/HomePageMainContentSlice/HomePageSliceData';
 import TranslateSlice from './Slices/AllTranslationContent/AllTranslationContentSlice';
 import AssetsSlice from './Slices/HomePageMainContentSlice/HomePageSliceAssets';
-import CardsSlice from './Slices/CardsSlice'
+import CardsSlice, { persistState } from './Slices/CardsSlice'
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     translationContent: TranslateSlice,
     assetsData: AssetsSlice,
@@ -15,6 +16,13 @@ const store = configureStore({
     language: languageReducer,
     likedAttractions: favoritesSlice
   }, 
+  middleware: (getDefaultMiddleware) => 
+    getDefaultMiddleware().concat(store => next => action => {
+      const result = next(action);
+      persistState(store.getState().cards);
+      return result;
+    })
 });
 
-export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

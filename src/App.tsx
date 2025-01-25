@@ -111,7 +111,18 @@ function App() {
        readMore={translationData.READ_MORE}
        seeAllNews={translationData.SEE_ALL_NEWS}
       />
-      <Buy />
+      <Buy 
+       title={translationData.BUY_COOLPASS_PRAGUE_CARD}
+       day={translationData.ESHOP_product_name_DAY}
+       namePass={translationData.ESHOP_product_name_PASS}
+       adult={translationData.CALCULATOR_ADULT}
+       studentChild={translationData.STUDENT_CHILD}
+       price={translationData.PRICE}
+       yourPrice={translationData.YOUR_PRICE}
+       calculatorCompleteBookingBin={
+       translationData.CALCULATOR_COMPLETE_BOOKING_BTN}
+       buyPragueCardCoolPass={translationData.BUY_PRAGUE_CARD_COOL_PASS}
+      />
       <Review />
       <Footer 
       footerTranslation={{ ...translationData }}

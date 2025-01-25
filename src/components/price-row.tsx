@@ -1,19 +1,21 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface PriceRowProps {
   label: string;
   price: number;
+  count: number;
+  priceLabel: string;
   onIncrement: () => void;
   onDecrement: () => void;
-  count: number;
 }
 
 export const PriceRow: React.FC<PriceRowProps> = ({
   label,
   price,
+  count,
+  priceLabel,
   onIncrement,
   onDecrement,
-  count,
 }) => {
   return (
     <div className="flex justify-between items-center w-full relative first:mt-[22px] mb-[15px]">
@@ -22,21 +24,24 @@ export const PriceRow: React.FC<PriceRowProps> = ({
           <p className="w-[64px] min-w-[64px] break-words font-base font-bold text-sm">
             {label}
           </p>
+
           {label === "Adult" && (
             <p className="hidden lg:block absolute top-[-22px] left-[94px]">
-              Price
+              {priceLabel}
             </p>
           )}
+        
+        <div className="hidden md:block ml-4 w-20 text-center font-bold">
+          {price} EUR
+        </div>
 
-          <div className="hidden md:block w-[90px] text-center font-bold mt-[4px]">
-            <p> 64 EUR </p>
-          </div>
-          <div className="flex justify-center items-center">
-            <button
-              className="flex justify-center items-center w-12 h-12 bg-white"
-              onClick={onDecrement}
-            >
-              <svg
+        <div className="flex items-center ml-auto">
+          <button
+             className="flex justify-center items-center w-12 h-12 bg-white"
+            onClick={onDecrement}
+            disabled={count === 0}
+          >
+            <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -50,15 +55,17 @@ export const PriceRow: React.FC<PriceRowProps> = ({
                   d="M5 12h14"
                 />
               </svg>
-            </button>
-            <div className="flex justify-center items-center h-12 w-16 bg-white">
+          </button>
+
+           <div className="flex justify-center items-center h-12 w-16 bg-white mx-1">
               <p className="font-bold text-lg">{count}</p>
             </div>
-            <button
-              className="flex justify-center items-center w-12 h-12 bg-white"
-              onClick={onIncrement}
-            >
-              <svg
+
+          <button
+            className="flex justify-center items-center w-12 h-12 bg-white"
+            onClick={onIncrement}
+          >
+            <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -72,16 +79,17 @@ export const PriceRow: React.FC<PriceRowProps> = ({
                   d="M12 4.5v15m7.5-7.5h-15"
                 />
               </svg>
-            </button>
-          </div>
+          </button>
         </div>
-        <div className="flex md:hidden text-sm flex-col items-end md:items-center text-sm lg:text-base">
+      </div>
+
+      <div className="flex md:hidden text-sm flex-col items-end md:items-center text-sm lg:text-base">
           <div className="flex items-center">
-            <span className="lg:hidden mr-[4px]">Price: </span>
+            <span className="lg:hidden mr-[4px]"> {priceLabel} </span>
             <p className="lg:w-[90px] font-semibold">{price} EUR</p>
           </div>
         </div>
-      </div>
     </div>
+  </div>
   );
 };
