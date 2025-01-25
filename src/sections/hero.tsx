@@ -2,19 +2,28 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Search } from "../components/search";
-
-const slides = [
-  "/assets/images/4c28b3e9-a6c7-44e4-9a63-cc1098cd0253.jpg",
-  "/assets/images/e5d6b5c3-a4a5-4ee4-9190-fb9afe1eedcb.jpg",
-  "/assets/images/11e5e13f-1ce2-468a-9b9a-eef93ce6ff5c.jpg",
-  "/assets/images/0a537d7c-d8d7-401b-9c00-a5844d35ea83.jpg",
-  "/assets/images/0d4b1366-3f24-424c-bc85-9fb5b8649f4e.jpg",
-];
+import { useMediaQuery } from 'react-responsive';
+import { API_PICTURES_URL } from "../api/apiconfig";
 
 export const Hero = ({
   title, subtitle, headerBanner, search, searchNotFound, searchEmpty, headerPhotoByLeabel, letsGo,
   mainImage
 }) => {
+
+  const isMobile = !useMediaQuery({
+    query: '(min-device-width: 768px)'
+  });
+
+  const imagesDesc = mainImage?.web_image?.map(
+    (image) => `${API_PICTURES_URL}/${image}`
+  ) || [];
+
+  const imagesMobile = mainImage?.app_image?.map(
+    (image) => `${API_PICTURES_URL}/small_${image}`
+  ) || [];
+
+  const images = isMobile ? imagesMobile : imagesDesc;
+
   return (
     <section className="flex flex-col justify-center">
       <div className="block h-[244px] min-h-[244px] md:h-[550px] md:min-h-[550px]">
@@ -33,7 +42,7 @@ export const Hero = ({
           }}
           className="relative"
         >
-          {slides.map((slide) => (
+          {images.map((slide) => (
             <SwiperSlide>
               <div
                 className="bg-no-repeat bg-cover bg-center h-[244px] md:h-[550px]"

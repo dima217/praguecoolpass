@@ -71,7 +71,7 @@ function App() {
 
   if (!contentData || !translationData) {
     return <p>Контент не найден</p>;
-}
+  }
 
   return (
     <>
@@ -87,7 +87,7 @@ function App() {
         searchEmpty={translationData.SEARCH_empty}
         headerPhotoByLeabel={translationData.HEADER_photo_by_label}
         letsGo={translationData.HOME_lets_go_button}
-        mainImage={mainImage}
+        mainImage={mainImage.mainImage}
       />
       <TopAttractions 
         title={translationData.HOME_top_attractions_title}
