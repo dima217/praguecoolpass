@@ -44,7 +44,7 @@ export const PassCard: React.FC<PassCardProps> = ({
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
-      <div className="flex flex-col justify-center items-center bg-bg text-white h-[98px] w-full rounded-t-xl">
+      <div className="flex flex-col justify-center items-center bg-bg text-white h-[112px] w-full rounded-t-xl">
         <div className="text-[26px] font-bold pt-[17px]">
           {numberOfDays} {dayText} {namePass}
         </div>
@@ -53,7 +53,7 @@ export const PassCard: React.FC<PassCardProps> = ({
         </div>
       </div>
       
-      <div className="w-full px-4 py-2 bg-[#F9F9FB]">
+      <div className="w-full h-[226px] px-4 py-2 bg-[#F9F9FB]">
         <PriceRow
           label={adultLabel}
           price={priceAdult}

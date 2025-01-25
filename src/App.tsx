@@ -123,7 +123,11 @@ function App() {
        translationData.CALCULATOR_COMPLETE_BOOKING_BTN}
        buyPragueCardCoolPass={translationData.BUY_PRAGUE_CARD_COOL_PASS}
       />
-      <Review />
+      <Review 
+      title={translationData.REVIEWS_what_do_customers_say}
+      seeAll={translationData.REVIEWS_see_all}
+      popupTranslations={{ ...translationData }} 
+      />
       <Footer 
       footerTranslation={{ ...translationData }}
       />
