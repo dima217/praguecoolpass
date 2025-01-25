@@ -14,6 +14,7 @@ import { Review } from "./sections/review";
 import { TopAttractions } from "./sections/top";
 import { Experience } from "./sections/experience";
 import { AllInclusive } from "./sections/all-inclusive";
+import { CoolPassInfo } from "./sections/CoolPassInfo";
 
 import { useDispatch, useSelector } from "react-redux";
 import API_ENDPOINTS from "./api/apiconfig";
@@ -122,6 +123,14 @@ function App() {
        calculatorCompleteBookingBin={
        translationData.CALCULATOR_COMPLETE_BOOKING_BTN}
        buyPragueCardCoolPass={translationData.BUY_PRAGUE_CARD_COOL_PASS}
+      />
+      <CoolPassInfo
+      daysHoursInfo={translationData.CALCULATOR_card_validity}
+      childInfo={translationData.CALCULATOR_child_card_validity_tip}
+      studInfo={translationData.CALCULATOR_student_id_info}
+      adultAge={translationData.APP_ADULT_AGE}
+      studAge={translationData.STUDENT_AGE}
+      childAge={translationData.CHILD_AGE} 
       />
       <Review 
       title={translationData.REVIEWS_what_do_customers_say}

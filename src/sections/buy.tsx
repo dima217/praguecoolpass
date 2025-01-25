@@ -160,20 +160,6 @@ export const Buy: React.FC<BuyProps> = ({
             </button>
             <div className="custom-pagination mt-[15px] flex justify-center items-center" />
           </div>
-
-          <div className="mt-[32px] ml-[12px] w-full">
-            <ul className="w-full list-disc list-outside list-image-[url(https://praguecoolpass.com/img/list-bullet.bfaee876.svg)]">
-              <li className="pl-[10px] mb-[14px] text-xs">
-                Prague CoolPass/Card is valid for consecutive days, not hours.
-              </li>
-              <li className="pl-[10px] mb-[14px] text-xs">
-                Child/Student Pass valid for children 6-16 years and students up to 26 years.
-              </li>
-              <li className="pl-[10px] text-xs">
-                Any student ID accepted. Not required at purchase but may be requested at attractions.
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
