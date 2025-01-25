@@ -1,11 +1,14 @@
+// @ts-nocheck
 import * as React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { ReviewCard } from "../components/review-card";
 import { StarRating } from "../components/ui/star-rating";
 import { Typography } from "../components/ui/typography";
+import { useState, useEffect, useRef } from 'react';
+import API_ENDPOINTS from "../api/apiconfig";
 
-const reviews = [
+const reviewss = [
   {
     rating: 4,
     title: "Un très bon investissement!",
@@ -216,18 +219,49 @@ const reviews = [
   },
 ];
 
-export const Review: React.FC = () => {
+export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
   const [activeSlide, setActiveSlide] = React.useState(1);
+
+  const [reveiws, setReveiws] = useState([]);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchAttractions = async () => {
+        try {
+            const response = await fetch(API_ENDPOINTS.GET_ReveiwsAprowed);
+            if (!response.ok) {
+                throw new Error('Failed to fetch reviews');
+            }
+            const data = await response.json();
+            for (let i = data.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [data[i], data[j]] = [data[j], data[i]];
+            }
+            const dataWithIds = data.map((item, index) => ({
+                ...item,
+                id: index + 1
+            }));
+            setReveiws(dataWithIds.slice(0, 15));
+        } catch (err) {
+            setError(true);
+            console.error(err.message);
+        }
+    };
+
+    fetchAttractions();
+  }, []);
+
+  console.log(reveiws);
 
   return (
     <section className="mt-[40px]">
       <div className="container">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6">
           <Typography variant="title">
-            WHAT OUR CUSTOMERS SAY ABOUT CooLPASS /PRAGUE CaRd
+            {title}
           </Typography>
           <div className="flex items-center mt-[19px] ml-[10px] font-bold lg:mt-0 lg:ml-0 flex flex-row-reverse lg:flex-row justify-end">
-            <div className="text-xxl mx-[12px]">4.6</div>
+            <div className="text-xxl mx-[12px]">4.5</div>
             <StarRating rating={5} />
           </div>
         </div>
@@ -275,7 +309,7 @@ export const Review: React.FC = () => {
             }}
             navigation={false}
           >
-            {reviews.map((review, index) => (
+            {reveiws.map((review, index) => (
               <SwiperSlide className="relative !h-auto">
                 <ReviewCard key={index} {...review} />
               </SwiperSlide>
@@ -305,7 +339,7 @@ export const Review: React.FC = () => {
 
         <div className="lg:hidden flex justify-center items-center mt-[15px] font-bold text-sm opacity-90 text-silver">
           <span className="text-primary">{activeSlide}</span> /
-          <span className="swiper-pagination-total">{reviews.length}</span>
+          <span className="swiper-pagination-total">{reveiws.length}</span>
         </div>
 
         <div className="flex flex-col lg:flex-row justify-center lg:justify-end lg:gap-[12px] font-bold text-bg mt-[15px]">
@@ -313,7 +347,7 @@ export const Review: React.FC = () => {
             href="/"
             className="flex justify-center items-center mb-[12px] h-[48px] leading-[19px] text-center min-w-[190px] px-[20px] border border-bg rounded-[5px] uppercase"
           >
-            SEE ALL REVIEWS
+            {seeAll}
           </a>
           <button className="flex justify-center items-center h-[48px] leading-[19px] text-center min-w-[190px] px-[20px] border border-bg rounded-[5px] uppercase">
             WRITE YOUR REVIEW

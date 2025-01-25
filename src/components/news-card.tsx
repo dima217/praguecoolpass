@@ -1,10 +1,12 @@
 import * as React from "react";
+import { API_PICTURES_URL } from "../api/apiconfig";
+// @ts-nocheck
 
 interface NewsCardProps {
   image: string;
   title: string;
   date: string;
-  content: React.ReactNode;
+  content: string;
   side?: "start" | "end";
 }
 
@@ -24,7 +26,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({
           }`}
         >
           <img
-            src={image}
+            src={`${API_PICTURES_URL}/small_${image}`}
             alt="News feature"
             className="w-full h-[261px] lg:h-[315px] object-cover lg:rounded-md"
           />
@@ -35,7 +37,8 @@ export const NewsCard: React.FC<NewsCardProps> = ({
         <div className="flex flex-col items-start self-stretch w-full lg:w-1/2 px-[8px] lg:px-0">
           <div className="flex flex-col max-w-full bg-black bg-opacity-0 w-[527px]">
             <h2 className="text-lg font-bold">{title}</h2>
-            <p className="mt-4 text-sm">{content}</p>
+            <p className="mt-4 text-sm" dangerouslySetInnerHTML={{
+                                    __html: content }} ></p>
           </div>
           <a
             href="/"

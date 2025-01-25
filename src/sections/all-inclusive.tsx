@@ -20,6 +20,8 @@ export const AllInclusive = ({title, offersContent, offersText}) => {
 
   }, [selectedLanguage])
 
+  console.log(offer);
+
   return (
     <section className="relative">
       <div className=" container max-lg:p-0">

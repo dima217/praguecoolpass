@@ -101,11 +101,36 @@ function App() {
         offersContent={offers}
         offersText={contentData.offers}
       />
-      <HowToUse />
-      <LatestNews />
-      <Buy />
-      <Review />
-      <Footer />
+      <HowToUse 
+        title={translationData.HOME_how_to_use_title}
+        HowToUseContent={howToUse}
+        HowToUseText={contentData.how_to_use} 
+      />
+      <LatestNews 
+       title={translationData.HOME_news_title}
+       readMore={translationData.READ_MORE}
+       seeAllNews={translationData.SEE_ALL_NEWS}
+      />
+      <Buy 
+       title={translationData.BUY_COOLPASS_PRAGUE_CARD}
+       day={translationData.ESHOP_product_name_DAY}
+       namePass={translationData.ESHOP_product_name_PASS}
+       adult={translationData.CALCULATOR_ADULT}
+       studentChild={translationData.STUDENT_CHILD}
+       price={translationData.PRICE}
+       yourPrice={translationData.YOUR_PRICE}
+       calculatorCompleteBookingBin={
+       translationData.CALCULATOR_COMPLETE_BOOKING_BTN}
+       buyPragueCardCoolPass={translationData.BUY_PRAGUE_CARD_COOL_PASS}
+      />
+      <Review 
+      title={translationData.REVIEWS_what_do_customers_say}
+      seeAll={translationData.REVIEWS_see_all}
+      popupTranslations={{ ...translationData }} 
+      />
+      <Footer 
+      footerTranslation={{ ...translationData }}
+      />
     </>
   );
 }

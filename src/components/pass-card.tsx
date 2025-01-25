@@ -1,49 +1,81 @@
-import * as React from "react";
-import { PriceRow } from "./price-row";
+import * as React from 'react';
+import { PriceRow } from './price-row';
 
 interface PassCardProps {
-  days: number;
-  price: {
-    adult: number;
-    student: number;
-  };
-  isSelected?: boolean;
+  numberOfDays: number;
+  priceAdult: number;
+  priceStudent: number;
+  adultLabel: string;
+  studentLabel: string;
+  priceLabel: string;
+  totalPriceLabel: string;
+  buttonLabel: string;
+  buyPassText: string;
+  dayText: string;
+  namePass: string;
+  adultCount: number;
+  studentCount: number;
+  onAdultIncrement: () => void;
+  onAdultDecrement: () => void;
+  onStudentIncrement: () => void;
+  onStudentDecrement: () => void;
 }
 
-export const PassCard: React.FC<PassCardProps> = ({ days, price }) => {
-  const [adultCount, setAdultCount] = React.useState(0);
-  const [studentCount, setStudentCount] = React.useState(0);
-
-  const totalPrice = adultCount * price.adult + studentCount * price.student;
+export const PassCard: React.FC<PassCardProps> = ({
+  numberOfDays,
+  priceAdult,
+  priceStudent,
+  adultLabel,
+  studentLabel,
+  priceLabel,
+  totalPriceLabel,
+  buttonLabel,
+  buyPassText,
+  dayText,
+  namePass,
+  adultCount,
+  studentCount,
+  onAdultIncrement,
+  onAdultDecrement,
+  onStudentIncrement,
+  onStudentDecrement,
+}) => {
+  const totalPrice = adultCount * priceAdult + studentCount * priceStudent;
 
   return (
     <div className="flex flex-col w-full overflow-hidden">
-      <div className="flex flex-col justify-center items-center bg-bg text-white h-[96px] w-full rounded-t-xl">
-        <div className="font-bold text-[26px]">{days} DAY PASS</div>
-        <div className="mt-[4px] text-sm font-semibold">
-          Buying Prague CoolPass
+      <div className="flex flex-col justify-center items-center bg-bg text-white h-[112px] w-full rounded-t-xl">
+        <div className="text-[26px] font-bold pt-[17px]">
+          {numberOfDays} {dayText} {namePass}
+        </div>
+        <div className="text-sm font-semibold mt-[3px]">
+          {buyPassText}
         </div>
       </div>
-      <div className="w-full pl-[25px] md:py-[8px] pr-[28px] bg-secondary">
+      
+      <div className="w-full h-[226px] px-4 py-2 bg-[#F9F9FB]">
         <PriceRow
-          label="Adult"
-          price={price.adult}
+          label={adultLabel}
+          price={priceAdult}
           count={adultCount}
-          onIncrement={() => setAdultCount((prev) => prev + 1)}
-          onDecrement={() => setAdultCount((prev) => Math.max(0, prev - 1))}
+          priceLabel={priceLabel}
+          onIncrement={onAdultIncrement}
+          onDecrement={onAdultDecrement}
         />
         <PriceRow
-          label="Student Child"
-          price={price.student}
+          label={studentLabel}
+          price={priceStudent}
           count={studentCount}
-          onIncrement={() => setStudentCount((prev) => prev + 1)}
-          onDecrement={() => setStudentCount((prev) => Math.max(0, prev - 1))}
+          priceLabel={priceLabel}
+          onIncrement={onStudentIncrement}
+          onDecrement={onStudentDecrement}
         />
-        <div className="flex items-center justify-end md:justify-center w-full text-center mb-[10px] mt-[15px]">
-          <p className="text-sm md:text-lg mr-[5px]">Your price:</p>
-          <p className="font-bold text-base md:text-lg uppercase">
+        
+        <div className="flex items-center justify-end w-full text-center my-4">
+          <span className="text-sm mr-2">{totalPriceLabel}</span>
+          <span className="font-bold text-lg">
             {totalPrice.toFixed(2)} EUR
-          </p>
+          </span>
         </div>
       </div>
 
@@ -51,7 +83,7 @@ export const PassCard: React.FC<PassCardProps> = ({ days, price }) => {
         className="h-[60px] font-semibold text-[15px] md:text-lg leading-[19px] bg-primary text-white rounded-b-xl p-0"
         aria-label="Complete booking"
       >
-        COMPLETE YOUR BOOKING
+        {buttonLabel.toUpperCase()}
       </button>
     </div>
   );

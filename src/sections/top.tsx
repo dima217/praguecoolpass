@@ -71,7 +71,7 @@ export const TopAttractions = ({ title, includedWithCoolpass }) => {
             },
           }}
         >
-          {attractions.map(({ id, title, subtitle, path, image }) => (
+          {attractions.map(({ title, subtitle, path, image }) => (
             <SwiperSlide>
               <TopCard
                 link={path}
