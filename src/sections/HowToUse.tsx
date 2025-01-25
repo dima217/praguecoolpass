@@ -73,7 +73,7 @@ export const HowToUse = ({title, HowToUseContent, HowToUseText}) => {
   useEffect(() => {
 
     const formatedText = HowToUseText.descriptions;
-    const formatedContent = HowToUseContent.how_to_use.app_images;
+    const formatedContent = HowToUseContent.HowToUse.app_images;
     
     setHowToUseText(formatedText);
     sethowToUseContent(formatedContent);

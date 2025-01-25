@@ -106,7 +106,11 @@ function App() {
         HowToUseContent={howToUse}
         HowToUseText={contentData.how_to_use} 
       />
-      <LatestNews />
+      <LatestNews 
+       title={translationData.HOME_news_title}
+       readMore={translationData.READ_MORE}
+       seeAllNews={translationData.SEE_ALL_NEWS}
+      />
       <Buy />
       <Review />
       <Footer />
