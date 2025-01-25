@@ -113,7 +113,9 @@ function App() {
       />
       <Buy />
       <Review />
-      <Footer />
+      <Footer 
+      footerTranslation={{ ...translationData }}
+      />
     </>
   );
 }
