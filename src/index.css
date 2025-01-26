@@ -52,6 +52,17 @@ body {
   font-family: "Open Sans";
 }
 
+@media (max-width: 1140px) {
+  .swiper-prv,
+  .swiper-nxt {
+    display: none !important;
+  }
+}
+.swiper-button-disabled {
+  opacity: 0.2 !important;
+  pointer-events: none;
+}
+
 .swiper-button-prev,
 .swiper-button-next {
   width: 1px !important;
