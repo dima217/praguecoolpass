@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface APICard {
     id: string;
     products: {
@@ -40,4 +41,11 @@ interface APICard {
         priceStudCh: childStudentProduct?.price || 0
       };
     });
+  };
+
+  export const toTitleCase = (str) => {
+    if (!str) return '';
+    return str.toLowerCase().split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   };

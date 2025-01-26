@@ -52,7 +52,7 @@ export const HowToUse = ({ title, HowToUseContent, HowToUseText }) => {
           onSwiper={handleSwiperInit}
           modules={[Pagination]}
           slidesPerView={1.05}
-          spaceBetween={10}
+          spaceBetween={15}
           pagination={{
             clickable: true,
             el: ".how-to-use-pagination",

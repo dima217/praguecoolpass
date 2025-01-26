@@ -11,6 +11,10 @@ import API_ENDPOINTS from '../api/apiconfig'
 import { transformCardsData } from '../additionalFunctions/customFunctions';
 import { PassCard } from '../components/pass-card';
 
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 interface BuyProps {
   title: string;
   day: string;
@@ -72,55 +76,55 @@ export const Buy: React.FC<BuyProps> = ({
 
   return (
     <div className="container flex flex-wrap gap-1 w-full">
-    <div className="flex relative flex-col w-full">
-      <div className="relative w-full">
-        <Typography variant="title">{title}</Typography>
-        <div className="flex flex-col items-center w-full relative">
-          <button
-            className="!hidden xl:!block swiper-button-prev !left-[0px] absolute md:-scale-x-100 md:transform"
-            aria-label="Previous"
-            aria-disabled="false"
-          >
-            <span
-              className="w-6 h-6 pr-5 ml-[5px] bg-no-repeat bg-center"
+      <div className="flex relative flex-col w-full">
+        <div className="relative w-full">
+          <Typography variant="title">{title}</Typography>
+          <div className="flex flex-col items-center w-full relative">
+            <button
+              className="!hidden xl:!block swiper-button-prev absolute md:-scale-x-100 md:transform"
+              aria-label="Previous"
               style={{
-                backgroundImage: "url(/assets/icons/right-arrow.svg)",
+                left: '0',
+                zIndex: 10,
               }}
-            />
-          </button>
-          <Swiper
-            modules={[Navigation, Pagination]}
-            slidesPerView={1.04}
-            spaceBetween={10}
-            navigation={false}
-            className="w-full"
-            pagination={{
-              clickable: true,
-              el: ".custom-pagination",
-              renderBullet: (_, className) => {
-                return `<span class="${className} custom-bullet"></span>`;
-              },
-            }}
-            breakpoints={{
-              1024: {
-                slidesPerView: 2.05,
-                slidesPerGroup: 2,
-                navigation: {
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
+            >
+              <span
+                className="w-6 h-6 pr-5 ml-[5px] bg-no-repeat bg-center"
+                style={{
+                  backgroundImage: "url(/assets/icons/right-arrow.svg)",
+                }}
+              />
+            </button>
+
+            <Swiper
+              modules={[Navigation, Pagination]}
+              slidesPerView={1.04}
+              spaceBetween={10}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              className="w-full"
+              pagination={{
+                clickable: true,
+                el: ".custom-pagination",
+                renderBullet: (_, className) => {
+                  return `<span class="${className} custom-bullet !bg-orange-400"></span>`;
                 },
-              },
-              1140: {
-                slidesPerView: 3.05,
-                slidesPerGroup: 3,
-                navigation: {
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
+              }}
+              breakpoints={{
+                1024: {
+                  slidesPerView: 2.05,
+                  slidesPerGroup: 2,
                 },
-              },
-            }}
-            slidesPerGroup={1}
-          >
+                1140: {
+                  slidesPerView: 3.05,
+                  slidesPerGroup: 3,
+                },
+              }}
+              slidesPerGroup={1}
+              onSlideChange={handleSlideChange}
+            >
               {cardsData.map((card, index) => (
                 <SwiperSlide key={card.id}>
                   <PassCard 
@@ -148,8 +152,11 @@ export const Buy: React.FC<BuyProps> = ({
 
             <button
               className="!hidden xl:!block swiper-button-next"
-              aria-label="Previous"
-              aria-disabled="false"
+              aria-label="Next"
+              style={{
+                right: '0px',
+                zIndex: 10,
+              }}
             >
               <span
                 className="w-6 h-6 pr-5 ml-[5px] bg-no-repeat bg-center"
@@ -158,7 +165,14 @@ export const Buy: React.FC<BuyProps> = ({
                 }}
               />
             </button>
-            <div className="custom-pagination mt-[15px] flex justify-center items-center" />
+
+            <div 
+              className="custom-pagination mt-[15px] flex justify-center items-center"
+              style={{
+                '--swiper-pagination-bullet-size': '12px',
+                '--swiper-pagination-bullet-horizontal-gap': '6px'
+              }}
+            />
           </div>
         </div>
       </div>

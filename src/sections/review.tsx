@@ -7,6 +7,7 @@ import { StarRating } from "../components/ui/star-rating";
 import { Typography } from "../components/ui/typography";
 import { useState, useEffect, useRef } from 'react';
 import API_ENDPOINTS from "../api/apiconfig";
+import { Link } from "react-router-dom";
 
 export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
   const [activeSlide, setActiveSlide] = React.useState(1);
@@ -132,15 +133,12 @@ export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
         </div>
 
         <div className="flex flex-col lg:flex-row justify-center lg:justify-end lg:gap-[12px] font-bold text-bg mt-[15px]">
-          <a
-            href="/"
-            className="flex justify-center items-center mb-[12px] h-[48px] leading-[19px] text-center min-w-[190px] px-[20px] border border-bg rounded-[5px] uppercase"
+          <Link
+            to="./reveiws"
+            className="h-[40px] md:w-fit w-full rounded-[5px] mr-2 bg-white border border-black flex items-center justify-center text-black hover:border-opacity-10 md:my-0 my-3"
           >
-            {seeAll}
-          </a>
-          <button className="flex justify-center items-center h-[48px] leading-[19px] text-center min-w-[190px] px-[20px] border border-bg rounded-[5px] uppercase">
-            WRITE YOUR REVIEW
-          </button>
+            <div className='text-[15px] font-bold px-5'>{seeAll.toUpperCase() ?? 'SEE ALL Reviews'}</div>
+          </Link>
         </div>
       </div>
     </section>

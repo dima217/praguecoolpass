@@ -2,12 +2,18 @@
 import { Button } from "./ui/button";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import API_ENDPOINTS from "../api/apiconfig";
+import { toTitleCase } from "../additionalFunctions/customFunctions"; // Добавьте эту функцию
 
 export const Search = ({ search, searchNotFound, letsGo }) => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [attractions, setAttractions] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [selectedAttraction, setSelectedAttraction] = useState(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const [error, setError] = useState(false);
   const selectedLanguage = useSelector((state) => state.language);
 
   useEffect(() => {
@@ -15,13 +21,18 @@ export const Search = ({ search, searchNotFound, letsGo }) => {
       try {
         const response = await fetch(API_ENDPOINTS.GET_Attractions);
         const data = await response.json();
-        setAttractions(data);
+        const formattedData = data.map(item => ({
+          id: item._id,
+          name: toTitleCase(item.content?.[selectedLanguage]?.title || item.content?.en?.title || ""),
+          path: `/attractions/${item.slug}`
+        }));
+        setAttractions(formattedData);
       } catch (error) {
         console.error("Error loading attractions:", error);
       }
     };
     fetchAttractions();
-  }, []);
+  }, [selectedLanguage]);
 
   useEffect(() => {
     const filterResults = () => {
@@ -30,22 +41,39 @@ export const Search = ({ search, searchNotFound, letsGo }) => {
         return;
       }
 
-      const query = searchQuery.toLowerCase().trim();
+      const results = attractions.filter(attraction => 
+        attraction.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
       
-      const results = attractions.filter((attraction) => {
-        const content = attraction?.content?.[selectedLanguage] || attraction?.content?.en || {};
-        const title = content?.title?.toLowerCase() || '';
-        return title.includes(query);
-      });
-
       setFilteredResults(results);
     };
 
     filterResults();
-  }, [searchQuery, selectedLanguage, attractions]);
+  }, [searchQuery, attractions]);
 
-  const showResults = searchQuery && filteredResults.length > 0;
-  const showNotFound = searchQuery && filteredResults.length === 0;
+  const handleSelect = (attraction) => {
+    setSelectedAttraction(attraction);
+    setSearchQuery(attraction.name);
+    setIsFocused(false);
+    setError(false);
+  };
+
+  const handleSearch = () => {
+    console.log('Ddd');
+    if (searchQuery.trim() === '') {
+      setError(true);
+      setIsFocused(true);
+      return;
+    }
+    if (selectedAttraction) {
+      navigate(selectedAttraction.path);
+    } else {
+      setError(true);
+    }
+  };
+
+  const showResults = isFocused && searchQuery && filteredResults.length > 0;
+  const showNotFound = (isFocused && searchQuery && filteredResults.length === 0) || error;
 
   return (
     <div className="flex flex-col md:flex-row items-center mt-[20px] container relative">
@@ -60,7 +88,13 @@ export const Search = ({ search, searchNotFound, letsGo }) => {
                   autoComplete="off"
                   className="border w-full rounded-[5px] text-sm color-bg h-[37px] indent-[12px]"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(toTitleCase(e.target.value));
+                    setSelectedAttraction(null);
+                    setError(false);
+                  }}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setTimeout(() => setIsFocused(false), 200)}
                 />
                 <input type="hidden" />
               </div>
@@ -68,23 +102,23 @@ export const Search = ({ search, searchNotFound, letsGo }) => {
 
             {showResults && (
               <ul className="autocomplete__results absolute top-full left-0 right-0 bg-white border rounded-[5px] mt-1 max-h-[200px] overflow-y-auto z-50 shadow-md">
-                {filteredResults.map((attraction) => {
-                  const content = attraction?.content?.[selectedLanguage] || attraction?.content?.en || {};
-                  return (
-                    <li
-                      key={attraction._id}
-                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm"
-                    >
-                      {content.title || ''}
-                    </li>
-                  );
-                })}
+                {filteredResults.map((attraction) => (
+                  <li
+                    key={attraction.id}
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm"
+                    onMouseDown={() => handleSelect(attraction)}
+                  >
+                    {attraction.name}
+                  </li>
+                ))}
               </ul>
             )}
 
             {showNotFound && (
               <div className="autocomplete__results absolute top-full left-0 right-0 bg-white border rounded-[5px] mt-1 p-4 text-center text-gray-500 text-sm">
-                {searchNotFound}
+                {error && searchQuery.trim() === '' 
+                  ? "Please enter search query" 
+                  : searchNotFound}
               </div>
             )}
           </div>
@@ -116,7 +150,10 @@ export const Search = ({ search, searchNotFound, letsGo }) => {
         </div>
       </div>
 
-      <Button className="max-md:mt-[12px] md:ml-[21px] md:px-[20px] h-[37px] bg-primary text-white max-md:w-full">
+      <Button 
+        className="max-md:mt-[12px] md:ml-[21px] md:px-[20px] h-[37px] bg-primary text-white max-md:w-full"
+        onClick={handleSearch}
+      >
         {letsGo}
       </Button>
     </div>

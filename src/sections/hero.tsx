@@ -26,7 +26,7 @@ export const Hero = ({
 
   return (
     <section className="flex flex-col justify-center">
-      <div className="block h-[244px] min-h-[244px] md:h-[550px] md:min-h-[550px]">
+      <div className="block h-[244px] min-h-[244px] md:h-[550px] md:min-h-[550px] z-30">
         <Swiper
           modules={[Autoplay, Pagination]}
           autoplay={{
@@ -52,10 +52,10 @@ export const Hero = ({
               />
             </SwiperSlide>
           ))}
-          <div className="hero-pagination absolute w-full bottom-[15px] flex justify-center items-center z-10" />
+          <div className="hero-pagination absolute w-full bottom-[15px] flex justify-center gap-2 items-center z-10" />
         </Swiper>
       </div>
-      <div className="relative flex justify-center md:items-center">
+      <div className="relative flex justify-center md:items-center z-30">
         <div className="container h-[244px] md:h-fit md:flex-col md:items-center w-full max-md:-top-[180px] md:mt-[53px] bottom-[65px] absolute z-10">
           <div className="min-h-[100px] h-auto w-full text-white md:pt-[9px] md:pb-[35px]">
             <h1 className="font-arial font-bold text-[26px] md:text-[48px] mt-[10px] mr-[8px] mb-[6px]" dangerouslySetInnerHTML={{ __html: title }}>
@@ -74,9 +74,9 @@ export const Hero = ({
           </div>
         </div>
       </div>
-      <div className="bg-primary min-h-[38px] md:h-[50px] h-auto w-full text-white flex justify-center items-center">
+      <div className="bg-primary min-h-[38px] md:h-[50px] h-auto w-full text-white flex justify-center items-center z-20">
         <div className="container">
-          <p className="w-full text-[9px] -mt-[32px] absolute text-right z-10 right-[8px]  opacity-90">
+          <p className="w-full text-[9px] -mt-[32px] absolute text-right z-10 right-[8px] opacity-90">
             <div className="container">Photo by Czech Tourism</div>
           </p>
           <p className="my-[8px] text-sm font-bold text-normal">

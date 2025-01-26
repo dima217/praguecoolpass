@@ -102,6 +102,10 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+
 .hero-bullet {
   transform: scale(0.9) !important;
   background-color: #fff !important;
