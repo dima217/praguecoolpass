@@ -63,6 +63,22 @@ body {
   pointer-events: none;
 }
 
+/* Скрытие пагинации на десктопах */
+@media (min-width: 1140px) {
+  .how-to-use-pagination {
+    display: none !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Кастомные стили для буллетов */
+.swiper-pagination-bullet-active {
+  background-color: #EF5106 !important;
+  transition: all 0.3s ease;
+}
+
 .swiper-button-prev,
 .swiper-button-next {
   width: 1px !important;
@@ -84,10 +100,6 @@ body {
   cursor: pointer;
   background: #252c3e;
   transition: background-color 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1 !important;
 }
 
 .hero-bullet {
