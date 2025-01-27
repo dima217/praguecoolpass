@@ -74,9 +74,9 @@ export const PassCard: React.FC<PassCardProps> = ({
           onDecrement={onStudentDecrement}
         />
         
-        <div className="flex items-center justify-end w-full text-center my-4">
-          <span className="text-sm mr-2">{totalPriceLabel}</span>
-          <span className="font-bold text-lg">
+        <div className="flex items-center justify-end md:justify-center w-full text-right md:text-center my-3 md:my-8">
+          <span className="text-base sm:text-xl mr-2 align-middle">{totalPriceLabel}</span>
+          <span className="font-bold text-sm sm:text-xl align-middle">
             {totalPrice.toFixed(2)} EUR
           </span>
         </div>
