@@ -100,7 +100,7 @@ export const Header = ({ buyNow }) => {
        ${isVisible ? "translate-y-0" : "-translate-y-full"}
      `}
     >
-      <div className="container mx-auto flex flex-wrap items-center p-2 z-10">
+      <div className="gap-14 mx-auto flex items-center xl:justify-center justify-between w-full py-2 z-10">
         <div className="justify-start flex items-center z-30">
           <div
             className="xl:hidden relative w-[27px] h-[18px] flex flex-col justify-between cursor-pointer relative mr-[15px] z-10"
@@ -123,15 +123,15 @@ export const Header = ({ buyNow }) => {
             ></span>
           </div>
           <a href="/">
-            <h1 className="font-Marselis text-xl font-bold">CoolPass</h1>
+            <h1 className="font-Marselis text-xl font-bold ">CoolPass</h1>
           </a>
         </div>
 
-        <nav className="hidden space-x-6 xl:flex ml-[50px] mr-[40px] basis-auto grow text-sm">
+        <nav className="hidden space-x-6 xl:flex justify-center text-sm">
           {linksDesctop}
         </nav>
 
-        <div className="grow shrink basis-auto flex justify-end space-x-4">
+        <div className="flex justify-end space-x-4">
           {/* Mobile Buy Button (visible when menu closed) */}
           <Button
             className={`xl:hidden ${
@@ -142,7 +142,7 @@ export const Header = ({ buyNow }) => {
           </Button>
 
           {/* Desktop Buttons */}
-        <div className="hidden xl:flex items-center space-x-4 ml-10">
+        <div className="hidden xl:flex items-center gap-4">
           <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors">
             {buyNow}
           </Button>
