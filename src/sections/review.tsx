@@ -8,6 +8,7 @@ import { Typography } from "../components/ui/typography";
 import { useState, useEffect, useRef } from 'react';
 import API_ENDPOINTS from "../api/apiconfig";
 import { Link } from "react-router-dom";
+import PopupUse from "../components/own-review/review-form";
 
 export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
   const [activeSlide, setActiveSlide] = React.useState(1);
@@ -139,6 +140,7 @@ export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
           >
             <div className='text-[15px] font-bold px-5'>{seeAll.toUpperCase() ?? 'SEE ALL Reviews'}</div>
           </Link>
+          <PopupUse popupTranslations={popupTranslations} />
         </div>
       </div>
     </section>
