@@ -1,5 +1,6 @@
 import * as React from "react";
 import { API_PICTURES_URL } from "../api/apiconfig";
+import { Link } from "react-router-dom";
 
 interface StepCardProps {
   index: number;
@@ -21,6 +22,23 @@ export const StepCard: React.FC<StepCardProps> = ({
           backgroundImage: `url('${API_PICTURES_URL}/small_${image}')`,
         }}
       />
+     {index === 0 && (
+          <>
+           <Link
+            to={'https://apps.apple.com/us/app/prague-coolpass/id1378275600'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-[3%] left-[7%] right-[8%] h-[22%] rounded-lg"
+           />
+            <Link
+            to={'https://play.google.com/store/apps/details?id=com.bookletia.coolpassprague'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-[32%] left-[7%] right-[8%] h-[20%] rounded-lg"
+            />
+          </>
+       )
+      }
       </div>
       <div className="flex flex-col text-center">
         <div
