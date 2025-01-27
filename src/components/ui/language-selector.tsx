@@ -48,32 +48,37 @@ const LanguageSelector = () => {
  
     return ( 
         <div className="relative inline-block text-left" ref={menuRef}> 
-            <button 
-                className="flex items-center justify-center px-4 h-[35px] bg-gray-700 text-white font-medium rounded-md shadow hover:bg-gray-600" 
-                onClick={() => setIsOpen(!isOpen)} 
-            > 
-                {currentLanguageTitle.toUpperCase()} 
-                <svg 
-                    className={`w-4 h-4 ml-2 transform transition-transform ${isOpen ? 'rotate-180' : ''}`} 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor" 
-                > 
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /> 
-                </svg> 
-            </button> 
+             <button
+                className="flex justify-between items-center w-full rounded bg-bg px-[20px] h-[35px] rounded-[5px] text-left text-white focus:outline-none"
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                {currentLanguageTitle.toUpperCase()}
+                <span className="ml-1">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="7"
+                        height="5"
+                        viewBox="0 0 7 5"
+                        fill="none"
+                    >
+                        <path
+                            d="M3.5 5L0.0358978 0.500001L6.9641 0.5L3.5 5Z"
+                            fill="white"
+                        />
+                    </svg>
+                </span>
+            </button>
  
             {isOpen && ( 
-                <div className="absolute right-0 mt-2 w-36 bg-gray-700 text-white rounded-md shadow-lg z-20"> 
+               <div className="absolute mt-2 rounded-[5px] bg-bg w-[110%] right-0">
                     <ul className="py-1 text-white"> 
                         {languages.map((lang) => ( 
                             <li 
                                 key={lang.alpha2code} 
-                                className="px-4 py-2 hover:bg-gray-600 cursor-pointer" 
+                                className="text-sm text-white pl-[12px] py-[5px] cursor-pointer" 
                                 onClick={() => handleSelect(lang.alpha2code)} 
                             > 
-                                {lang.title.toUpperCase()} 
+                                {lang.title} 
                             </li> 
                         ))} 
                     </ul> 
