@@ -94,7 +94,7 @@ export const Footer = ({ footerTranslation }) => {
                             <form onSubmit={handleSubscribe} className="w-[304px] min-w-[333px] flex items-center">
                                 <label className="w-full">
                                     <input
-                                        className="w-full h-[48px] indent-[24px] rounded-[5px] border-0 pr-[106px] text-sm"
+                                        className="w-full h-[48px] indent-[24px] rounded-[5px] border-0 pr-[106px] text-sm text-black"
                                         name="email"
                                         type="email"
                                         placeholder={footerTranslation.ENTER_EMAIL_PLACEHOLDER || 'Enter your e–mail'}
@@ -124,7 +124,7 @@ export const Footer = ({ footerTranslation }) => {
                         </div>
                     </div>
                 </div>
-                <div className="text-xs w-[294px] text-left mt-[31px] mx-[8px] mb-[50px]">
+                <div className="text-xs w-full text-left md:text-right mx-[8px] mb-[35px] ml-auto">
                     {footerTranslation.ALL_RIGHTS_RESERVED_LABEL || 'All rights reserved by Travel CoolPass Ltd. & Prague Card s.r.o.'}
                 </div>
             </div>
