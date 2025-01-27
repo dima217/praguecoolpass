@@ -4,14 +4,14 @@ import { Button } from "../components/ui/button";
 import { Typography } from "../components/ui/typography";
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import API_ENDPOINTS, {API_PICTURES_URL} from "../api/apiconfig";
 
 import {
-  formatDateNews, CutToFirstBRTag, HighlightATag, toTitleCase
+  formatDateNews, CutToFirstBRTag, toTitleCase
 } from '../additionalFunctions/additionalFunctions';
 
 export const LatestNews = ({title, readMore, seeAllNews}) => {
@@ -19,6 +19,8 @@ export const LatestNews = ({title, readMore, seeAllNews}) => {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAttractions = async () => {
@@ -58,13 +60,18 @@ export const LatestNews = ({title, readMore, seeAllNews}) => {
           date={formatDateNews(item.publishedOnHomePage)}
           content={CutToFirstBRTag(item.content.en.text)}
           side={index % 2 === 0 ? "start" : "end"} 
+          url={item.url}
+          readMore={readMore}
         />
   ) ) }
       </div>
       <div className="container flex justify-end mt-[15px]">
-        <Button className="bg-primary text-white self-end px-[20px] h-[48px] max-lg:w-full min-w-[228px] font-bold text-base">
-          {seeAllNews}
-        </Button>
+      <Button 
+        className="bg-primary text-white self-end px-[20px] h-[48px] max-lg:w-full min-w-[228px] font-bold text-base"
+        onClick={() => navigate('/news')} 
+      >
+        {seeAllNews}
+      </Button>
       </div>
     </div>
   );

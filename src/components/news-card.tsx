@@ -1,5 +1,9 @@
 import * as React from "react";
 import { API_PICTURES_URL } from "../api/apiconfig";
+import {
+   toTitleCase
+} from '../additionalFunctions/additionalFunctions';
+import { Link } from "react-router-dom";
 // @ts-nocheck
 
 interface NewsCardProps {
@@ -8,6 +12,8 @@ interface NewsCardProps {
   date: string;
   content: string;
   side?: "start" | "end";
+  url: string;
+  readMore: string;
 }
 
 export const NewsCard: React.FC<NewsCardProps> = ({
@@ -16,6 +22,8 @@ export const NewsCard: React.FC<NewsCardProps> = ({
   content,
   date,
   side = "start",
+  url,
+  readMore,
 }) => {
   return (
     <article className="flex flex-col">
@@ -40,13 +48,9 @@ export const NewsCard: React.FC<NewsCardProps> = ({
             <p className="mt-4 text-sm" dangerouslySetInnerHTML={{
                                     __html: content }} ></p>
           </div>
-          <a
-            href="/"
-            className="mt-6 text-xs text-primary underline cursor-pointer"
-            aria-label="Read more about this news"
-          >
-            See More
-          </a>
+          <Link to={`/article-page/${url}`} className="mt-6 text-xs text-primary underline cursor-pointer">
+            {toTitleCase(readMore)}
+          </Link>
         </div>
       </div>
     </article>
