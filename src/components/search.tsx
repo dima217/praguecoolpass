@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import API_ENDPOINTS from "../api/apiconfig";
-import { toTitleCase } from "../additionalFunctions/customFunctions"; // Добавьте эту функцию
+import { toTitleCase } from "../additionalFunctions/customFunctions";
+
+{/*Attractions search*/}
 
 export const Search = ({ search, searchNotFound, letsGo }) => {
   const navigate = useNavigate();
@@ -100,6 +102,7 @@ export const Search = ({ search, searchNotFound, letsGo }) => {
               </div>
             </div>
 
+          {/*Search results*/}
             {showResults && (
               <ul className="autocomplete__results absolute top-full left-0 right-0 bg-white border rounded-[5px] mt-1 max-h-[200px] overflow-y-auto z-50 shadow-md">
                 {filteredResults.map((attraction) => (
@@ -124,6 +127,7 @@ export const Search = ({ search, searchNotFound, letsGo }) => {
           </div>
         </label>
 
+     {/*svg-search image*/}
         <div className="absolute w-[20px] h-[20px] cursor-pointer right-[18px]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
