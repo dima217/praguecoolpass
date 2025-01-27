@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { PriceRow } from './price-row';
+import { useNavigate } from 'react-router-dom';
 
 interface PassCardProps {
   numberOfDays: number;
@@ -42,6 +43,8 @@ export const PassCard: React.FC<PassCardProps> = ({
 }) => {
   const totalPrice = adultCount * priceAdult + studentCount * priceStudent;
 
+  const navigate = useNavigate();
+  
   return (
     <div className="flex flex-col w-full overflow-hidden">
       <div className="flex flex-col justify-center items-center bg-bg text-white h-[112px] w-full rounded-t-xl">
@@ -71,9 +74,9 @@ export const PassCard: React.FC<PassCardProps> = ({
           onDecrement={onStudentDecrement}
         />
         
-        <div className="flex items-center justify-end w-full text-center my-4">
-          <span className="text-sm mr-2">{totalPriceLabel}</span>
-          <span className="font-bold text-lg">
+        <div className="flex items-center justify-end md:justify-center w-full text-right md:text-center my-3 md:my-8">
+          <span className="text-base sm:text-xl mr-2 align-middle">{totalPriceLabel}</span>
+          <span className="font-bold text-sm sm:text-xl align-middle">
             {totalPrice.toFixed(2)} EUR
           </span>
         </div>
@@ -82,6 +85,7 @@ export const PassCard: React.FC<PassCardProps> = ({
       <button
         className="h-[60px] font-semibold text-[15px] md:text-lg leading-[19px] bg-primary text-white rounded-b-xl p-0"
         aria-label="Complete booking"
+        onClick={() => navigate('/eshop')}
       >
         {buttonLabel.toUpperCase()}
       </button>

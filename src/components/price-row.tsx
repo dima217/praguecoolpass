@@ -26,7 +26,7 @@ export const PriceRow: React.FC<PriceRowProps> = ({
           </p>
 
           {label === "Adult" && (
-            <p className="hidden lg:block absolute top-[-22px] left-[94px]">
+            <p className="hidden text-lg lg:block absolute top-[-22px] left-[94px]">
               {priceLabel}
             </p>
           )}

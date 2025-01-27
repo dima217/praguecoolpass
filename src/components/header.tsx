@@ -142,7 +142,7 @@ export const Header = ({ buyNow }) => {
           </Button>
 
           {/* Desktop Buttons */}
-        <div className="hidden xl:flex items-center space-x-4">
+        <div className="hidden xl:flex items-center space-x-4 ml-10">
           <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors">
             {buyNow}
           </Button>
