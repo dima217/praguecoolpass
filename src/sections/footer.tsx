@@ -51,7 +51,7 @@ export const Footer = ({ footerTranslation }) => {
     return (
         <footer className="flex justify-center h-auto mt-[70px] text-white bg-bg">
             <div className="container mt-[30px] px-[8px]">
-                <div className="grid gap-10 grid-cols-[repeat(1,1fr)] md:grid-cols-[repeat(3,1fr)] xl:grid-cols-[repeat(5,1fr)]">
+                <div className="grid gap-8 grid-cols-[repeat(1,1fr)] md:grid-cols-[repeat(3,1fr)] xl:grid-cols-[repeat(5,1fr)]">
                     {footerColumns.map((column, colIndex) => (
                         <ul key={colIndex} className="ml-[8px]">
                             {column.map((item, index) => (
@@ -68,7 +68,7 @@ export const Footer = ({ footerTranslation }) => {
                             ))}
                         </ul>
                     ))}
-                    <div className="mb-[32px] ml-[8px]">
+                    <div className="ml-[8px]">
                         <h3 className="mb-[12px] text-sm">
                             {footerTranslation.DOWNLOAD?.toUpperCase() || 'DOWNLOAD'}
                         </h3>
@@ -91,8 +91,8 @@ export const Footer = ({ footerTranslation }) => {
                             {footerTranslation.NEWS_AND_UPDATES || 'NEWS & UPDATES'}
                         </h3>
                         <div className="w-full">
-                            <form onSubmit={handleSubscribe} className="w-[304px] min-w-[333px] flex items-center">
-                                <label className="w-full">
+                            <form onSubmit={handleSubscribe} className="w-full flex items-center">
+                                <label className="sm:w-full lg:w-[333px]">
                                     <input
                                         className="w-full h-[48px] indent-[24px] rounded-[5px] border-0 pr-[106px] text-sm text-black"
                                         name="email"
@@ -115,16 +115,14 @@ export const Footer = ({ footerTranslation }) => {
                             </p>}
                         </div>
                         <div className="font-Marselis font-bold text-[19px] mx-[8px] mt-[22px] mb-[10px]">
-                            {footerTranslation.FOOTER_year_card
-                                ? footerTranslation.FOOTER_year_card.replace('$year', year)
-                                : `CoolPass 2020-${year}`}
+                            {`CoolPass 2020-${year}`}
                         </div>
                         <div className="font-Marselis font-bold text-[19px] mx-[8px]">
                             {`Prague Card 1992-${year}`}
                         </div>
                     </div>
                 </div>
-                <div className="text-xs w-full text-left md:text-right mx-[8px] mb-[35px] ml-auto">
+                <div className="text-xs w-full text-left md:text-right mx-[8px] mb-2 mt-6 ml-2">
                     {footerTranslation.ALL_RIGHTS_RESERVED_LABEL || 'All rights reserved by Travel CoolPass Ltd. & Prague Card s.r.o.'}
                 </div>
             </div>
