@@ -6,6 +6,7 @@ import LanguageSelector from "./ui/language-selector";
 import { useSelector } from "react-redux";
 import API_ENDPOINTS from "../api/apiconfig";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Header = ({ buyNow }) => {
   const [isOpen, setOpen] = useState(false);
@@ -15,6 +16,8 @@ export const Header = ({ buyNow }) => {
   const selectedLanguage = useSelector((state) => state.language);
 
   const toggleMenu = () => setOpen((prev) => !prev);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,7 +103,7 @@ export const Header = ({ buyNow }) => {
        ${isVisible ? "translate-y-0" : "-translate-y-full"}
      `}
     >
-      <div className="gap-14 mx-auto flex items-center xl:justify-center justify-between w-full py-2 z-10">
+      <div className="gap-14 mx-auto flex items-center xl:justify-center justify-between w-full py-2 px-2 z-10">
         <div className="justify-start flex items-center z-30">
           <div
             className="xl:hidden relative w-[27px] h-[18px] flex flex-col justify-between cursor-pointer relative mr-[15px] z-10"
@@ -134,6 +137,7 @@ export const Header = ({ buyNow }) => {
         <div className="flex justify-end space-x-4">
           {/* Mobile Buy Button (visible when menu closed) */}
           <Button
+            onClick={() => navigate('/eshop')} 
             className={`xl:hidden ${
               isOpen ? "hidden" : "block"
             } bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors`}
@@ -143,7 +147,9 @@ export const Header = ({ buyNow }) => {
 
           {/* Desktop Buttons */}
         <div className="hidden xl:flex items-center gap-4">
-          <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors">
+          <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors"
+           onClick={() => navigate('/eshop')}
+           >
             {buyNow}
           </Button>
           <LanguageSelector />
@@ -159,7 +165,9 @@ export const Header = ({ buyNow }) => {
       <Menu open={isOpen}>
         {linksMobile}
         {/* Mobile Buy Button in menu */}
-        <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors">
+        <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors"
+         onClick={() => navigate('/eshop')}
+        >
           {buyNow}
         </Button>
       </Menu>
