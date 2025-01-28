@@ -88,7 +88,7 @@ export const Header = ({ buyNow }) => {
       return (
         <a
           key={item._id}
-          className="text-white text-base mb-[14px] font-bold hover:text-primary transition-colors"
+          className="text-white text-lg mb-[18px] font-bold hover:text-primary transition-colors"
           href={link}
         >
           {title}
@@ -98,7 +98,7 @@ export const Header = ({ buyNow }) => {
 
   return (
     <header
-      className={`flex items-center z-50 h-[43px] w-full text-white fixed transition-transform duration-300
+      className={`flex items-center z-50 h-[56px] w-full text-white fixed transition-transform duration-300
        ${isOpen ? "bg-[#444959]" : "bg-bg/60"}
        ${isVisible ? "translate-y-0" : "-translate-y-full"}
      `}
@@ -126,7 +126,7 @@ export const Header = ({ buyNow }) => {
             ></span>
           </div>
           <a href="/">
-            <h1 className="font-Marselis text-xl font-bold ">CoolPass</h1>
+            <h1 className="font-Marselis text-2xl font-bold ">CoolPass</h1>
           </a>
         </div>
 
@@ -165,8 +165,9 @@ export const Header = ({ buyNow }) => {
       <Menu open={isOpen}>
         {linksMobile}
         {/* Mobile Buy Button in menu */}
-        <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors"
-         onClick={() => navigate('/eshop')}
+        <Button 
+        onClick={() => navigate('/eshop')}
+        className="bg-primary hover:bg-orange-700 w-[258px] h-[35px] transition-colors"
         >
           {buyNow}
         </Button>
