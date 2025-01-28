@@ -37,7 +37,7 @@ export const CoolPassInfo = ({
         </li>
     </ul>
 
-    <div className="text-left font-bold md:max-w-[366px] md:mt-8 md:px-0 mt-0 text-sm px-[25px] md:ml-5">
+    <div className="text-left font-bold md:max-w-[366px] md:mt-8 md:px-0 mt-0 md:text-sm text-xs px-[25px] md:ml-5">
         <div className='flex md:flex-col flex-row justify-between'>
             <p className='mb-[10px]'>{adultAge || 'ADULT 16+ years'}</p>
             <p className='mb-[10px]'>{studAge || 'STUDENT 16 - 26 years'}</p>

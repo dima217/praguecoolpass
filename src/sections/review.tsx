@@ -45,13 +45,13 @@ export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
   console.log(reveiws);
 
   return (
-    <section className="mt-[40px]">
+    <section className="mt-[10px]">
       <div className="container">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-6">
-          <Typography variant="title">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8">
+          <Typography className="font-bold text-lg">
             {title}
           </Typography>
-          <div className="flex items-center mt-[19px] ml-[10px] font-bold lg:mt-0 lg:ml-0 flex flex-row-reverse lg:flex-row justify-end">
+          <div className="flex items-center mt-[19px] ml-[10px] font-bold lg:mt-0 lg:ml-0 flex flex-row-reverse lg:flex-row justify-end md:mr-[20px]">
             <div className="text-xxl mx-[12px]">4.5</div>
             <StarRating rating={5} />
           </div>
@@ -111,7 +111,7 @@ export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
               activeSlide === 13 ? "opacity-20" : ""
             }`}
           >
-            <span className="h-[20px] w-[20px] flex justify-center items-center">
+            <span className="h-[20px] w-[20px] flex justify-center items-center -mr-[40px] bg-no-repeat bg-center">
               <svg
                 width="16"
                 height="24"
@@ -133,7 +133,7 @@ export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
           <span className="swiper-pagination-total">{reveiws.length}</span>
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-center lg:justify-end lg:gap-[12px] font-bold text-bg mt-[15px]">
+        <div className="flex flex-col lg:flex-row justify-center lg:justify-end lg:gap-[12px] font-bold text-bg mt-[15px] md:mr-[20px]">
           <Link
             to="./reveiws"
             className="h-[40px] md:w-fit w-full rounded-[5px] mr-2 bg-white border border-black flex items-center justify-center text-black hover:border-opacity-10 md:my-0 my-3"

@@ -68,7 +68,7 @@ export const Footer = ({ footerTranslation }) => {
                             ))}
                         </ul>
                     ))}
-                    <div className="mb-[32px] ml-[8px]">
+                    <div className="ml-[8px]">
                         <h3 className="mb-[12px] text-sm">
                             {footerTranslation.DOWNLOAD?.toUpperCase() || 'DOWNLOAD'}
                         </h3>
@@ -91,8 +91,8 @@ export const Footer = ({ footerTranslation }) => {
                             {footerTranslation.NEWS_AND_UPDATES || 'NEWS & UPDATES'}
                         </h3>
                         <div className="w-full">
-                            <form onSubmit={handleSubscribe} className="w-[304px] min-w-[333px] flex items-center">
-                                <label className="w-full">
+                            <form onSubmit={handleSubscribe} className="w-full flex items-center">
+                                <label className="sm:w-full lg:w-[333px]">
                                     <input
                                         className="w-full h-[48px] indent-[24px] rounded-[5px] border-0 pr-[106px] text-sm text-black"
                                         name="email"
