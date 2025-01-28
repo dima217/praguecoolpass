@@ -30,11 +30,11 @@ export const TopCard: FC<TopCardProps> = ({
   };
 
   return (
+    <a href={item.path} className="h-full w-full">
     <div
       className="h-[204px] w-full rounded-[10px] bg-cover bg-no-repeat bg-center relative overflow-hidden cursor-pointer"
       style={{ backgroundImage: `url('${API_PICTURES_URL}/${item.image}')` }}
     >
-      <a href={item.path} className="h-full w-full">
         <div className="absolute top-0 right-0 mt-[10px] px-[15px] h-[23px] bg-[#fdca2e] rounded-tl-[5px] rounded-bl-[5px]">
           <p className="text-sm flex justify-center items-center">
             {includedWithCoolpass}
@@ -74,7 +74,7 @@ export const TopCard: FC<TopCardProps> = ({
             </button>
           </div>
         </div>
-      </a>
     </div>
+    </a>
   );
 };
