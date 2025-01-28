@@ -47,7 +47,7 @@ export const StepCard: React.FC<StepCardProps> = ({
         >
           {index + 1}
         </div>
-        <p className="px-2 w-[288px] h-[69px] mt-[7px] text-sm">{descriptions}</p>
+        <p className="px-2 w-[288px] mt-[7px] text-sm">{descriptions}</p>
       </div>
     </div>
   );
