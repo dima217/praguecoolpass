@@ -79,36 +79,36 @@ const ReviewForm = ({ active, setActive, onSuccess, onReset, popupTranslations }
             <CustomInput
               error={errors.name}
               register={register}
-              labeltext={popupTranslations.REVIEWS_form_name_field}
-              placeholdertext={popupTranslations.REVIEWS_form_name_placeholder}
+              labeltext={popupTranslations.REVIEWS_form_name_field.toUpperCase() || 'YOUR NAME*'}
+              placeholdertext={popupTranslations.REVIEWS_form_name_placeholder.toUpperCase() || 'Full name'}
               id="name"
             />
             <CustomInput
               error={errors.email}
               register={register}
-              labeltext={popupTranslations.REVIEWS_review_form_email_field}
-              placeholdertext={popupTranslations.APP_EMAIL}
+              labeltext={popupTranslations.REVIEWS_review_form_email_field.toUpperCase() || 'YOUR E-MAIL*'}
+              placeholdertext={popupTranslations.APP_EMAIL.toUpperCase() || 'Email'}
               id="email"
               type="email"
             />
             <CustomInput
               error={errors.title}
               register={register}
-              labeltext={popupTranslations.REVIEWS_review_form_title_field}
-              placeholdertext={popupTranslations.REVIEWS_review_form_title_placeholder}
+              labeltext={popupTranslations.REVIEWS_review_form_title_field.toUpperCase() || 'REVIEW TITLE*'}
+              placeholdertext={popupTranslations.REVIEWS_review_form_title_placeholder.toUpperCase() || 'Title'}
               id="title"
             />
             <CustomInput
               error={errors.country}
               register={register}
-              labeltext={popupTranslations.REVIEWS_review_form_city_field}
-              placeholdertext={popupTranslations.REVIEWS_review_form_city_placeholder}
+              labeltext={popupTranslations.REVIEWS_review_form_city_field.toUpperCase() || 'YOUR COUNTRY*'}
+              placeholdertext={popupTranslations.REVIEWS_review_form_city_placeholder.toUpperCase() || 'Country'}
               id="country"
             />
           </div>
 
           <CustomRating
-            title={popupTranslations.REVIEWS_review_form_rating_field}
+            title={popupTranslations.REVIEWS_review_form_rating_field.toUpperCase()}
             error={errors.rating}
             register={register}
             setValue={setValue}

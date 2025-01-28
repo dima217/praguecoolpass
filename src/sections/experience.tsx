@@ -46,7 +46,7 @@ export const Experience = ({title, benefitsData}) => {
                 onClick={() => setActiveSpoiler(index + 1)}
               >
                 <h4 className="text-lg font-semibold text-white ml-[20px] text-uppercase">
-                  {title}
+                  {title.toUpperCase()}
                 </h4>
               </div>
               <div
