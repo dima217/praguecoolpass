@@ -6,7 +6,7 @@ import LanguageSelector from "./ui/language-selector";
 import { useSelector } from "react-redux";
 import API_ENDPOINTS from "../api/apiconfig";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = ({ buyNow }) => {
   const [isOpen, setOpen] = useState(false);
@@ -67,13 +67,13 @@ export const Header = ({ buyNow }) => {
       const link = item.link || "/";
 
       return (
-        <a
+        <Link
           key={item._id}
           className="hover:text-primary transition-colors"
-          href={link}
+          to={link}
         >
           {title}
-        </a>
+        </Link>
       );
     });
 
@@ -86,19 +86,19 @@ export const Header = ({ buyNow }) => {
       const link = item.link || "/";
 
       return (
-        <a
+        <Link
           key={item._id}
           className="text-white text-lg mb-[18px] font-bold hover:text-primary transition-colors"
-          href={link}
+          to={link}
         >
           {title}
-        </a>
+        </Link>
       );
     });
 
   return (
     <header
-      className={`flex items-center z-50 h-[56px] w-full text-white fixed transition-transform duration-300
+      className={`flex items-center z-50 h-[56px] md:h-[43px] w-full text-white fixed transition-transform duration-300
        ${isOpen ? "bg-[#444959]" : "bg-bg/60"}
        ${isVisible ? "translate-y-0" : "-translate-y-full"}
      `}
@@ -138,7 +138,7 @@ export const Header = ({ buyNow }) => {
           {/* Mobile Buy Button (visible when menu closed) */}
           <Button
             onClick={() => navigate('/eshop')} 
-            className={`xl:hidden ${
+            className={`font-semibold xl:hidden ${
               isOpen ? "hidden" : "block"
             } bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors`}
           >
@@ -147,7 +147,7 @@ export const Header = ({ buyNow }) => {
 
           {/* Desktop Buttons */}
         <div className="hidden xl:flex items-center gap-4">
-          <Button className="bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors"
+          <Button className="font-semibold bg-primary hover:bg-orange-700 min-w-[105px] h-[35px] text-[15px] transition-colors"
            onClick={() => navigate('/eshop')}
            >
             {buyNow}

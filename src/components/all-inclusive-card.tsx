@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { API_PICTURES_URL } from "../api/apiconfig";
+import { Link } from "react-router-dom";
 
 interface AllInclusiveCardProps {
   title: string;
@@ -30,7 +31,7 @@ export const AllInclusiveCard: FC<AllInclusiveCardProps> = ({
           isHoverActive ? "invisible" : "visible"
         }`}
       >
-        <div className="flex justify-center items-center bg-primary/70 w-[260px] lg:w-[476px] h-[71px] text-center mt-[208px] px-[15px] rounded-[10px]">
+        <div className="flex justify-center items-center bg-primary/70 w-[290px] lg:w-[476px] h-[71px] text-center mt-[208px] px-[15px] rounded-[10px]">
           <p className="font-bold text-lg text-white uppercase">{title}</p>
         </div>
       </div>
@@ -49,14 +50,14 @@ export const AllInclusiveCard: FC<AllInclusiveCardProps> = ({
           </div>
         </div>
         <div className="flex justify-center items-center w-full mt-auto mb-[40px]">
-          <a
-            href="/attractions?category=5f575890418c980b69d941bb"
+          <Link
+            to="/attractions?category=5f575890418c980b69d941bb"
             className="min-w-[80px] h-[40px] w-auto"
           >
-            <button className="min-w-[126px] h-[40px] mt-[14px] w-auto bg-primary border-primary text-white px-[20px] rounded-[5px]">
+            <button className="min-w-[126px] h-[40px] mt-[14px] w-auto bg-primary border-primary text-white font-semibold px-[20px] rounded-[5px]">
               {button_text}
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

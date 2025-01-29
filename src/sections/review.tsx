@@ -45,7 +45,7 @@ export const Review: React.FC = ({title, seeAll, popupTranslations}) => {
   console.log(reveiws);
 
   return (
-    <section className="mt-[10px]">
+    <section className="mt-8">
       <div className="container">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8">
           <Typography className="font-bold text-lg">

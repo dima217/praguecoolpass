@@ -155,7 +155,7 @@ export const Search = ({ search, searchNotFound, letsGo }) => {
       </div>
 
       <Button 
-        className="max-md:mt-[12px] md:ml-[21px] md:px-[20px] h-[37px] bg-primary text-white max-md:w-full"
+        className="font-semibold max-md:mt-[12px] md:ml-[21px] md:px-[20px] h-[37px] bg-primary text-white max-md:w-full"
         onClick={handleSearch}
       >
         {letsGo}

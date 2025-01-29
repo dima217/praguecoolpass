@@ -10,7 +10,7 @@ const modaleSlice = createSlice({
     initialState,
     reducers: {
         setIsModalOpen: (state, action) => {
-            state.isModalOpen = action.payload; // Установка состояния модального окна
+            state.isModalOpen = action.payload; 
         }
     }
 });

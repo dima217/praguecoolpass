@@ -1,5 +1,10 @@
 import { useState, FC, MouseEvent } from "react";
 import { API_PICTURES_URL } from "../api/apiconfig";
+import { removeUnwantedTags } from "../additionalFunctions/additionalFunctions";
+
+import heartActive from "../../dist/assets/icons/heart-active.svg"
+import heartDisable from "../../dist/assets/icons/heart-disable.svg"
+import { Link } from "react-router-dom";
 
 interface TopCardItem {
   id: string;
@@ -30,7 +35,10 @@ export const TopCard: FC<TopCardProps> = ({
   };
 
   return (
-    <a href={item.path} className="h-full w-full">
+    <Link 
+    to={item.path} 
+    className="h-full w-full block" 
+  >
     <div
       className="h-[204px] w-full rounded-[10px] bg-cover bg-no-repeat bg-center relative overflow-hidden cursor-pointer"
       style={{ backgroundImage: `url('${API_PICTURES_URL}/${item.image}')` }}
@@ -51,7 +59,7 @@ export const TopCard: FC<TopCardProps> = ({
             </p>
             {isHoverActive && (
               <p className="text-xs text-white overflow-hidden overflow-ellipsis line-clamp-2">
-                {item.subtitle}
+                {removeUnwantedTags(item.subtitle)}
               </p>
             )}
           </div>
@@ -64,17 +72,14 @@ export const TopCard: FC<TopCardProps> = ({
             >
               <img
                 className="h-6 w-6 hover:opacity-80"
-                src={
-                  isLiked
-                    ? 'https://www.praguecoolpass.com/img/heart-active.72445abc.svg'
-                    : 'https://www.praguecoolpass.com/img/heart-disable.e975f7bf.svg'
-                }
+                src = {isLiked ? heartActive : heartDisable}
+                
                 alt="Heart"
               />
             </button>
           </div>
         </div>
     </div>
-    </a>
+    </Link>
   );
 };

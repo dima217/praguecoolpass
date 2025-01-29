@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 import API_ENDPOINTS from "../api/apiconfig";
 import { addLike, removeLike } from "../redux/Slices/LikedAttractionsSlice";
 
+import rightArrow from "../../dist/assets/icons/right-arrow.svg"
+import leftArrow from "../../dist/assets/icons/left-arrow.svg"
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -58,7 +61,7 @@ export const TopAttractions = ({ title, includedWithCoolpass }) => {
       <div className="container">
         <Typography variant="title">{title}</Typography>
         
-        {/* Обертка для позиционирования стрелок */}
+        {/* Wrapper for arrow positioning*/}
         <div className="relative group">
           <Swiper
             modules={[Navigation]}
@@ -97,17 +100,17 @@ export const TopAttractions = ({ title, includedWithCoolpass }) => {
             ))}
           </Swiper>
 
-          {/* Кастомные стрелки навигации */}
+          {/* Navigation */}
           <div className="swiper-prv absolute top-1/2 -left-10 z-20 cursor-pointer transform -translate-y-1/2">
             <img 
-              src="https://www.praguecoolpass.com/img/left-arrow.4841114c.svg" 
+              src={leftArrow}
               alt="Previous" 
               className="w-8 h-8 hover:opacity-80"
             />
           </div>
           <div className="swiper-nxt absolute top-1/2 -right-10 z-20 cursor-pointer transform -translate-y-1/2">
             <img 
-              src="https://www.praguecoolpass.com/img/right-arrow.7fb8afe3.svg" 
+              src={rightArrow} 
               alt="Next" 
               className="w-8 h-8 hover:opacity-80"
             />

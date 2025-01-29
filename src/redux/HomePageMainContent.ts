@@ -35,13 +35,13 @@ export const fetchHomePageMainContent = (
         );
     } catch (error) {
         if (error.type === 'mainData') {
-            dispatch(setMainDataError('Ошибка загрузки данных контента'));
+            dispatch(setMainDataError('Error loading data content'));
         } else if (error.type === 'translation') {
-            dispatch(setTranslationContentError('Ошибка загрузки данных перевода'));
+            dispatch(setTranslationContentError('Error loading translation data'));
         } else {
-            dispatch(setAssetsDataError('Ошибка загрузки данных ассетов'));
+            dispatch(setAssetsDataError('Error loading asset data'));
         }
 
-        console.error('Произошла ошибка:', error.error || error);
+        console.error('Error:', error.error || error);
     }
 };
