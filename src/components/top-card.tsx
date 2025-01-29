@@ -45,8 +45,8 @@ export const TopCard: FC<TopCardProps> = ({
           onMouseEnter={() => setIsHoverActive(true)}
           onMouseLeave={() => setIsHoverActive(false)}
         >
-          <div className="flex flex-col ml-[20px] mr-14 pr-2 flex-1 min-w-0">
-            <p className="font-semibold text-sm text-white truncate">
+          <div className="flex flex-col ml-[20px] pr-2 flex-1 min-w-0">
+            <p className="font-semibold text-sm text-white">
               {item.title}
             </p>
             {isHoverActive && (
