@@ -44,7 +44,7 @@ export const AllInclusiveCard: FC<AllInclusiveCardProps> = ({
               `}
       >
         <div className="px-[22px] lg:px-[47px] text-white">
-          <div className="mt-[30px] text-lg">{title}</div>
+          <div className="font-bold mt-[30px] text-lg">{title}</div>
           <div className="text-[11px] sm:text-sm mt-[15px]" dangerouslySetInnerHTML={{ __html: features_list }}>
           </div>
         </div>

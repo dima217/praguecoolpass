@@ -8,7 +8,7 @@ export const CoolPassInfo = ({
     adultAge,
     studAge,
     childAge
-}) => (<div className="max-w-[1140px] mx-auto p-6 pt-0 text-gray-800 grid max-gap-[15px] md:min-gap-[10px] md:grid-cols-3 grid-rows-1 text-xs">
+}) => (<div className="max-w-[1140px] mx-auto p-2 pt-0 text-gray-800 grid max-gap-[15px] md:min-gap-[10px] md:grid-cols-3 grid-rows-1 text-xs">
     <ul className="mt-8 list-none md:max-w-[366px] max-w-fit">
         <li className="md:mb-4 mb-0 flex items-start">
             <img
