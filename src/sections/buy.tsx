@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
@@ -66,6 +68,7 @@ export const Buy: React.FC<BuyProps> = ({
     fetchCards();
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSlideChange = (swiper: any) => {
     setIsAtStart(swiper.isBeginning);
     setIsAtEnd(swiper.isEnd);
